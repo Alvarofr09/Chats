@@ -6,7 +6,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Logo from "../assets/logo.svg";
-import { registerRoute } from "../utils/APIRoutes";
+import { registerRoute, userApi } from "../api/APIRoutes";
 
 export default function Register() {
 	const navigate = useNavigate();
@@ -28,11 +28,12 @@ export default function Register() {
 		e.preventDefault();
 		if (handleValidation()) {
 			const { username, email, password } = values;
-			const { data } = await axios.post(registerRoute, {
+			const { data } = await userApi.post(registerRoute, {
 				username,
 				email,
 				password,
 			});
+
 			if (data.status === false) {
 				toast.error(data.msg, toastOptions);
 			} else {
