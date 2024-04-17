@@ -1,0 +1,17 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body,
+form,
+input {
+	font-family: "Poppins", sans-serif;
+}
+
+body {
+	max-height: 100vh;
+	max-width: 100vw;
+	overflow: hidden;
+}
