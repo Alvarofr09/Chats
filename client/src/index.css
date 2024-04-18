@@ -13,11 +13,11 @@
 @tailwind components;
 @tailwind utilities;
 
-/* * {
-	margin: 0;
-	padding: 0;
+* {
+	/* margin: 0;
+	padding: 0; */
 	box-sizing: border-box;
-} */
+}
 
 body,
 form,
@@ -36,7 +36,20 @@ body {
 }
 /* my-20 */
 .register-form {
-	@apply flex flex-col gap-6 bg-black bg-opacity-50 rounded-xl py-12 px-20;
+	border-radius: 2em;
+	@apply flex flex-col gap-6 bg-black bg-opacity-50 py-12 px-20;
+}
+
+.brand {
+	@apply flex items-center gap-4 justify-center;
+}
+
+.titulo {
+	@apply text-white uppercase;
+}
+
+.link {
+	@apply text-purple-600 no-underline font-bold;
 }
 
 .register-input {
@@ -54,5 +67,5 @@ body {
 .error {
 	color: red;
 	font-size: 10px;
-	margin-top: 0;
+	margin-top: -25px;
 }
