@@ -8,7 +8,9 @@ export default function Input({ label, ...props }) {
 			<input
 				{...props}
 				{...field}
-				className={meta.touched && meta.error ? "input-error" : ""}
+				className={
+					meta.touched && meta.error ? "input-error" : "register-input"
+				}
 			/>
 			{meta.touched && meta.error && <div className="error">{meta.error}</div>}
 		</>
