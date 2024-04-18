@@ -23,12 +23,12 @@ export default function RegisterForm() {
 			validationSchema={RegisterFormSchema}
 			onSubmit={onSubmit}
 		>
-			{(values, erros, isSubmitting) => (
+			{(values, errors, isSubmitting) => (
 				<div className="container-form">
 					<Form className="register-form">
-						<div className="brand flex items-center gap-4 justify-center">
+						<div className="brand ">
 							<img src={Logo} alt="Logo" className="h-20" />
-							<h1 className="text-white uppercase">Tradeium</h1>
+							<h1 className="titulo">Tradeium</h1>
 						</div>
 						<Input
 							// label="Username"
@@ -62,16 +62,13 @@ export default function RegisterForm() {
 						>
 							Register
 						</button>
-						<span className="text-white uppercase">
+						<span className="titulo">
 							Already have an account ?{" "}
-							<Link
-								className="text-purple-600 no-underline font-bold"
-								to="/login"
-							>
+							<Link className="link" to="/login">
 								Login
 							</Link>
 						</span>
-						{/* <pre>{JSON.stringify({ values, erros }, null, 1)}</pre> */}
+						{/* <pre>{JSON.stringify({ values, errors }, null, 1)}</pre> */}
 					</Form>
 				</div>
 			)}
