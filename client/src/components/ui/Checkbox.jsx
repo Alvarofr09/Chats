@@ -10,7 +10,7 @@ export default function Checkbox({ ...props }) {
 				{...field}
 				className={meta.touched && meta.error ? "input-error" : ""}
 			/>
-			<span>Accept the terms and conditions</span>
+			<span className="text-white"> Accept the terms and conditions</span>
 			{meta.touched && meta.error && <div className="error">{meta.error}</div>}
 		</div>
 	);
