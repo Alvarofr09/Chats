@@ -1,8 +1,23 @@
-* {
+@tailwind base;
+
+@layer base {
+	html {
+		@apply text-neutral-800;
+	}
+	html.dark {
+		@apply text-neutral-50;
+		@apply bg-neutral-800;
+	}
+}
+
+@tailwind components;
+@tailwind utilities;
+
+/* * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-}
+} */
 
 body,
 form,
@@ -14,4 +29,30 @@ body {
 	max-height: 100vh;
 	max-width: 100vw;
 	overflow: hidden;
+}
+
+.container-form {
+	@apply h-screen w-screen flex flex-col justify-center gap-4 items-center bg-gray-900;
+}
+/* my-20 */
+.register-form {
+	@apply flex flex-col gap-6 bg-black bg-opacity-50 rounded-xl py-12 px-20;
+}
+
+.register-input {
+	@apply bg-transparent p-4 border border-solid border-purple-600 rounded-md text-white w-full text-base focus:border-purple-400 focus:outline-none;
+}
+
+.input-error {
+	@apply bg-transparent p-4 border border-solid border-red-600 rounded-md text-white w-full text-base focus:border-red-500 focus:outline-none;
+}
+
+.register-button {
+	@apply bg-purple-400 text-white px-8 py-4 border-none font-bold cursor-pointer rounded-md text-xl uppercase transition duration-500 ease-in-out hover:bg-purple-600;
+}
+
+.error {
+	color: red;
+	font-size: 10px;
+	margin-top: 0;
 }
