@@ -2,6 +2,8 @@ import { Formik, Form } from "formik";
 import { initialValues } from "./InitialValues";
 import { RegisterFormSchema } from "./RegisterFormSchema";
 
+import InputPrueba from "../ui/Prueba";
+
 import Logo from "../../assets/logo.svg";
 
 import Input from "../ui/Input";
@@ -47,6 +49,12 @@ export default function RegisterForm() {
 							name="password"
 							type="password"
 							placeholder="Enter your password"
+						/>
+						<InputPrueba
+							label="Username"
+							name="username"
+							type="text"
+							// placeholder="Enter your username"
 						/>
 						<Input
 							// label="Confirm Password"
