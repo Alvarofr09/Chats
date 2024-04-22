@@ -1,6 +1,6 @@
 const dao = require("../services/dao/userDao");
 
-const register = async (req, res, next) => {
+const userRegister = async (req, res, next) => {
 	try {
 		const { username, email, password } = req.body;
 		console.log(req.body);
@@ -34,5 +34,5 @@ const register = async (req, res, next) => {
 };
 
 module.exports = {
-	register,
+	userRegister,
 };
