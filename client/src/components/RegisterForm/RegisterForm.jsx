@@ -1,5 +1,5 @@
 import { Formik, Form } from "formik";
-import { initialValues } from "./InitialValues";
+import { RegisterFormInitialValues } from "../../consts/InitialValues";
 import { ToastContainer, toast } from "react-toastify";
 import { RegisterFormSchema } from "./RegisterFormSchema";
 
@@ -10,8 +10,11 @@ import Checkbox from "../ui/Checkbox";
 import { Link, useNavigate } from "react-router-dom";
 // import { useState } from "react";
 import { registerRoute, userApi } from "../../api/APIRoutes";
+import { useEffect } from "react";
+import { useAuthContext } from "../../context/AuthContext";
 
 export default function RegisterForm() {
+	const { login } = useAuthContext();
 	const navigate = useNavigate();
 	const toastOptions = {
 		position: "bottom-right",
@@ -21,6 +24,12 @@ export default function RegisterForm() {
 		theme: "dark",
 	};
 
+	useEffect(() => {
+		if (localStorage.getItem("user")) {
+			navigate("/");
+		}
+	}, []);
+
 	async function onSubmit(values) {
 		const { username, email, password } = values;
 		const { data } = await userApi.post(registerRoute, {
@@ -28,19 +37,21 @@ export default function RegisterForm() {
 			email,
 			password,
 		});
+		const user = {
+			email,
+			password,
+		};
 
 		if (data.status === false) {
 			toast.error(data.msg, toastOptions);
 		} else {
-			localStorage.setItem("chat-app-user", JSON.stringify(data.user));
-			toast.success(data.msg, toastOptions);
-			navigate("/");
+			login(user);
 		}
 	}
 	return (
 		<>
 			<Formik
-				initialValues={initialValues}
+				initialValues={RegisterFormInitialValues}
 				validationSchema={RegisterFormSchema}
 				onSubmit={onSubmit}
 			>
