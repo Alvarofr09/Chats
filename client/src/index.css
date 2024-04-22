@@ -31,8 +31,8 @@ body {
 	overflow: hidden;
 }
 
-input[type="text"]:focus ~ .input-text {
-	@apply text-blue-500 bg-black transform -translate-y-9 -translate-x-4;
+input:focus ~ .input-text {
+	@apply text-purple-400 bg-black transform -translate-y-9 -translate-x-4;
 }
 
 .container-form {
@@ -57,11 +57,11 @@ input[type="text"]:focus ~ .input-text {
 }
 
 .register-input {
-	@apply bg-transparent p-4 border border-solid border-purple-600 rounded-md text-white w-full text-base focus:border-purple-400 focus:outline-none;
+	@apply h-16 w-96 px-6 text-4xl bg-black border-2 rounded-lg border-purple-600 border-opacity-50 outline-none focus:border-purple-400 focus:text-white transition duration-200;
 }
 
 .input-error {
-	@apply bg-transparent p-4 border border-solid border-red-600 rounded-md text-white w-full text-base focus:border-red-500 focus:outline-none;
+	@apply h-16 w-96 px-6 text-4xl bg-black border-2 rounded-lg border-red-600 border-opacity-50 outline-none focus:border-red-500 focus:text-white transition duration-200;
 }
 
 .register-button {
@@ -69,7 +69,8 @@ input[type="text"]:focus ~ .input-text {
 }
 
 .error {
-	color: red;
+	@apply text-red-600;
+	/* color: red; */
 	font-size: 10px;
 	margin-top: -25px;
 }
