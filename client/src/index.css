@@ -96,3 +96,7 @@ input:focus ~ .input-text {
 .selected-contact {
 	@apply bg-[#9186f3];
 }
+
+.centered {
+	@apply flex justify-center items-center;
+}
