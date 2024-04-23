@@ -45,7 +45,7 @@ export default function LoginForm() {
 							<InputPrueba label="Password" name="password" type="password" />
 
 							<button
-								className="register-button"
+								className="btn-primary"
 								type="submit"
 								disabled={isSubmitting}
 							>

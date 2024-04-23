@@ -79,7 +79,7 @@ export default function RegisterForm() {
 							/>
 							<Checkbox type="checkbox" name="acceptedTC" />
 							<button
-								className="register-button"
+								className="btn-primary"
 								type="submit"
 								disabled={isSubmitting}
 							>
