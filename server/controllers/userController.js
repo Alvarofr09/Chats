@@ -105,9 +105,20 @@ const getAllUsers = async (req, res, next) => {
 	}
 };
 
+const getUser = async (req, res, next) => {
+	try {
+		const id = req.params.id;
+		const user = await dao.getUserById(id);
+		res.status(200).json({ user });
+	} catch (error) {
+		next(error);
+	}
+};
+
 module.exports = {
 	userRegister,
 	userLogin,
 	setAvatar,
 	getAllUsers,
+	getUser,
 };
