@@ -3,6 +3,8 @@ import { RegisterFormInitialValues } from "../../consts/InitialValues";
 import { ToastContainer, toast } from "react-toastify";
 import { RegisterFormSchema } from "./RegisterFormSchema";
 
+// import SetAvatar from "../../views/SetAvatar";
+
 import Logo from "../../assets/logo.svg";
 
 import InputPrueba from "../ui/Prueba";
@@ -10,7 +12,7 @@ import Checkbox from "../ui/Checkbox";
 import { Link, useNavigate } from "react-router-dom";
 // import { useState } from "react";
 import { registerRoute, userApi } from "../../api/APIRoutes";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { useAuthContext } from "../../context/AuthContext";
 
 export default function RegisterForm() {
@@ -24,11 +26,11 @@ export default function RegisterForm() {
 		theme: "dark",
 	};
 
-	useEffect(() => {
-		if (localStorage.getItem("user")) {
-			navigate("/");
-		}
-	}, []);
+	// useEffect(() => {
+	// 	if (localStorage.getItem("user")) {
+	// 		navigate("/");
+	// 	}
+	// }, []);
 
 	async function onSubmit(values) {
 		const { username, email, password } = values;
@@ -46,6 +48,8 @@ export default function RegisterForm() {
 			toast.error(data.msg, toastOptions);
 		} else {
 			login(user);
+
+			navigate("/setAvatar");
 		}
 	}
 	return (
@@ -92,6 +96,9 @@ export default function RegisterForm() {
 				)}
 			</Formik>
 			<ToastContainer />
+
+			{/* Llama al componente SetAvatar si se ha registrado un usuario */}
+			{/* {localStorage.getItem("user") && <SetAvatar />} */}
 		</>
 	);
 }
