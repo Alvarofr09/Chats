@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 
 import Logo from "../assets/logo.svg";
 
-export default function Contacts({ contacts, currentUser }) {
+export default function Contacts({ contacts, currentUser, changeChat }) {
 	const [currentUserName, setCurrentUserName] = useState(undefined);
 	const [currentUserImage, setCurrentUserImage] = useState(undefined);
-	const [currentUserSelected, setCurrentUserSelected] = useState(undefined);
+	const [currentSelected, setCurrentSelected] = useState(undefined);
 	useEffect(() => {
 		if (currentUser) {
 			setCurrentUserName(currentUser.username);
@@ -13,7 +13,15 @@ export default function Contacts({ contacts, currentUser }) {
 		}
 	}, [currentUser]);
 
-	const changeCurrentChat = (index, contact) => {};
+	useEffect(() => {
+		console.log("currentSelected en el useEffect:", currentSelected);
+	}, [currentSelected]);
+
+	const changeCurrentChat = (index, contact) => {
+		setCurrentSelected(index);
+		changeChat(contact);
+	};
+
 	return (
 		<>
 			{currentUserImage && currentUserName && (
@@ -21,91 +29,19 @@ export default function Contacts({ contacts, currentUser }) {
 					className="container grid grid-rows-3 overflow-hidden bg-[#080420]"
 					style={{ gridTemplateRows: "10% 75% auto" }}
 				>
-					<div className="brand flex justify-center items-center gap-4">
+					<div className="brand ">
 						<img src={Logo} alt="Logo" className="h-8" />
 						<h1 className="titulo uppercase">Tradeium</h1>
 					</div>
-					<div className="contacts flex flex-col justify-center items-center overflow-auto gap-3 scrollbar-custom">
+					<div className="contacts ">
 						{contacts.map((contact, index) => {
 							return (
 								<div
-									className={`contact bg-[#ffffff39] min-h-[5rem] w-[90%] cursor-pointer rounded-[0.2rem] 
-									gap-4 p-[0.4rem] items-center flex transition duration-200 ease-in-out ${
-										index === currentUserSelected && "bg-[#9186f3]"
+									className={`contact  ${
+										index === currentSelected && "selected-contact"
 									}`}
 									key={index}
-								>
-									<div className="avatar">
-										<img
-											className="h-12"
-											src={`data:image/svg+xml;base64,${contact.avatarImage}`}
-											alt="avatar"
-										/>
-									</div>
-									<div className="username">
-										<h3 className="text-xl text-white bold">
-											{contact.username}
-										</h3>
-									</div>
-								</div>
-							);
-						})}
-						{contacts.map((contact, index) => {
-							return (
-								<div
-									className={`contact bg-[#ffffff39] min-h-[5rem] w-[90%] cursor-pointer rounded-[0.2rem] 
-									gap-4 p-[0.4rem] items-center flex transition duration-200 ease-in-out ${
-										index === currentUserSelected && "bg-[#9186f3]"
-									}`}
-									key={index}
-								>
-									<div className="avatar">
-										<img
-											className="h-12"
-											src={`data:image/svg+xml;base64,${contact.avatarImage}`}
-											alt="avatar"
-										/>
-									</div>
-									<div className="username">
-										<h3 className="text-xl text-white bold">
-											{contact.username}
-										</h3>
-									</div>
-								</div>
-							);
-						})}
-						{contacts.map((contact, index) => {
-							return (
-								<div
-									className={`contact bg-[#ffffff39] min-h-[5rem] w-[90%] cursor-pointer rounded-[0.2rem] 
-									gap-4 p-[0.4rem] items-center flex transition duration-200 ease-in-out ${
-										index === currentUserSelected && "bg-[#9186f3]"
-									}`}
-									key={index}
-								>
-									<div className="avatar">
-										<img
-											className="h-12"
-											src={`data:image/svg+xml;base64,${contact.avatarImage}`}
-											alt="avatar"
-										/>
-									</div>
-									<div className="username">
-										<h3 className="text-xl text-white bold">
-											{contact.username}
-										</h3>
-									</div>
-								</div>
-							);
-						})}
-						{contacts.map((contact, index) => {
-							return (
-								<div
-									className={`contact bg-[#ffffff39] min-h-[5rem] w-[90%] cursor-pointer rounded-[0.2rem] 
-									gap-4 p-[0.4rem] items-center flex transition duration-200 ease-in-out ${
-										index === currentUserSelected && "bg-[#9186f3]"
-									}`}
-									key={index}
+									onClick={() => changeCurrentChat(index, contact)}
 								>
 									<div className="avatar">
 										<img
@@ -126,13 +62,13 @@ export default function Contacts({ contacts, currentUser }) {
 					<div className="current-user bg-[#0d0d30] flex justify-center items-center gap-8">
 						<div className="avatar h-16">
 							<img
-								className="h-full max-i"
+								className="h-full "
 								src={`data:image/svg+xml;base64,${currentUserImage}`}
 								alt="avatar"
 							/>
 						</div>
 						<div className="username">
-							<h3 className="text-xl text-white bold">{currentUserName}</h3>
+							<h3 className="text-xl titulo">{currentUserName}</h3>
 						</div>
 					</div>
 				</div>
