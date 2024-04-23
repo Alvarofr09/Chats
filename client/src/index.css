@@ -1,4 +1,6 @@
 @tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
 	html {
@@ -10,8 +12,8 @@
 	}
 }
 
-@tailwind components;
-@tailwind utilities;
+@layer components {
+}
 
 * {
 	/* margin: 0;
@@ -19,16 +21,8 @@
 	box-sizing: border-box;
 }
 
-body,
-form,
-input {
-	font-family: "Poppins", sans-serif;
-}
-
-body {
-	max-height: 100vh;
-	max-width: 100vw;
-	overflow: hidden;
+.avatar {
+	@apply border-4 border-transparent p-2 rounded-full flex justify-center items-center transition duration-500 ease-in-out;
 }
 
 input:focus ~ .input-text {
@@ -64,7 +58,7 @@ input:focus ~ .input-text {
 	@apply h-16 w-96 px-6 text-4xl bg-black border-2 rounded-lg border-red-600 border-opacity-50 outline-none focus:border-red-500 focus:text-white transition duration-200;
 }
 
-.register-button {
+.btn-primary {
 	@apply bg-purple-400 text-white px-8 py-4 border-none font-bold cursor-pointer rounded-md text-xl uppercase transition duration-500 ease-in-out hover:bg-purple-600;
 }
 
@@ -73,6 +67,15 @@ input:focus ~ .input-text {
 	/* color: red; */
 	font-size: 10px;
 	margin-top: -25px;
+}
+
+.contacts {
+	@apply flex flex-col justify-center items-center overflow-auto gap-3 scrollbar-custom;
+}
+
+.contact {
+	@apply bg-[#ffffff39] min-h-[5rem] w-[90%] cursor-pointer rounded-[0.2rem] 
+									gap-4 p-[0.4rem] items-center flex transition duration-200 ease-in-out;
 }
 
 /* Estilos personalizados para la barra de desplazamiento */
@@ -89,4 +92,7 @@ input:focus ~ .input-text {
 	background-color: #ffffff39;
 	border-radius: 1rem;
 	border: 0.1rem solid transparent;
+}
+.selected-contact {
+	@apply bg-[#9186f3];
 }
