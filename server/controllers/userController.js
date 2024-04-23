@@ -94,8 +94,20 @@ const setAvatar = async (req, res, next) => {
 	}
 };
 
+const getAllUsers = async (req, res, next) => {
+	try {
+		const id = req.params.id;
+
+		const users = await dao.getAllUsers(id);
+		res.status(200).json({ users });
+	} catch (error) {
+		next(error);
+	}
+};
+
 module.exports = {
 	userRegister,
 	userLogin,
 	setAvatar,
+	getAllUsers,
 };
