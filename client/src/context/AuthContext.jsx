@@ -40,10 +40,9 @@ export default function AuthContextProvider({ children }) {
 			toast.error(data.msg, toastOptions);
 			setErrorMessage("Error al introducir credenciales");
 		} else {
-			setAuth(user);
+			setAuth(data.user);
 			setErrorMessage("");
 			toast.success(data.msg, toastOptions);
-			navigate("/");
 		}
 	}
 
