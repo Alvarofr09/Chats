@@ -40,7 +40,7 @@ export default function SetAvatar() {
 
 			if (data.isSet) {
 				user.isAvatarImageSet = true;
-				user.avatarIMage = data.image;
+				user.avatarImage = data.image;
 				localStorage.setItem("user", JSON.stringify(user));
 				navigate("/");
 			} else {
