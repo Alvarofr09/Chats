@@ -60,6 +60,24 @@ userDao.getUserByEmail = async (email) => {
 	}
 };
 
+userDao.getAllUsers = async (id) => {
+	let conn = null;
+	try {
+		conn = await db.createConection();
+
+		return await db.query(
+			"SELECT email, username, avatarImage, id FROM users WHERE id != ?",
+			[id],
+			"select",
+			conn
+		);
+	} catch (error) {
+		throw new Error(error);
+	} finally {
+		conn && (await conn.end());
+	}
+};
+
 userDao.createUser = async (userData) => {
 	let conn = null;
 	try {
