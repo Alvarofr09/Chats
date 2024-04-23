@@ -10,6 +10,7 @@ export default function Chat() {
 	const navigate = useNavigate();
 	const [contacts, setContacts] = useState([]);
 	const [currentUser, setCurrentUser] = useState(undefined);
+	const [currentChat, setCurrentChat] = useState(undefined);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -44,18 +45,26 @@ export default function Chat() {
 		fetchData();
 	}, [navigate]);
 
+	const handleChatChange = (chat) => {
+		setCurrentChat(chat);
+	};
+
 	return (
 		<div className="h-screen w-screen flex flex-col justify-center gap-4 items-center bg-[#131324]">
 			<div
 				className="container h-[85%] w-[85%] bg-[#00000076] grid grid-cols-2 lg:grid-cols-[35% 65%]"
 				style={{
 					gridTemplateColumns: "25% 75%",
-					"@media (min-width: 720px) and (max-width: 1080px)": {
-						gridTemplateColumns: "35% 65%",
-					},
+					// "@media (min-width: 720px) and (max-width: 1080px)": {
+					// 	gridTemplateColumns: "35% 65%",
+					// },
 				}}
 			>
-				<Contacts contacts={contacts} currentUser={currentUser} />
+				<Contacts
+					contacts={contacts}
+					currentUser={currentUser}
+					changeChat={handleChatChange}
+				/>
 			</div>
 			<ToastContainer />
 		</div>
