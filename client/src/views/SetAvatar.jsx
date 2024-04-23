@@ -85,7 +85,7 @@ export default function SetAvatar() {
 							return (
 								<div
 									key={index}
-									className={`avatar border-4 border-transparent p-2 rounded-full flex justify-center items-center transition duration-500 ease-in-out ${
+									className={`avatar  ${
 										selectedAvatar === index ? " bg-[#4e0eff] " : ""
 									}`}
 								>
@@ -99,7 +99,7 @@ export default function SetAvatar() {
 							);
 						})}
 					</div>
-					<button className="register-button" onClick={setProfilePicture}>
+					<button className="btn-primary" onClick={setProfilePicture}>
 						Set as Profile Picture
 					</button>
 				</div>
