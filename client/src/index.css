@@ -74,3 +74,19 @@ input:focus ~ .input-text {
 	font-size: 10px;
 	margin-top: -25px;
 }
+
+/* Estilos personalizados para la barra de desplazamiento */
+.scrollbar-custom {
+	scrollbar-width: thin;
+	scrollbar-color: #ffffff39 transparent;
+}
+
+.scrollbar-custom::-webkit-scrollbar {
+	width: 0.2rem;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+	background-color: #ffffff39;
+	border-radius: 1rem;
+	border: 0.1rem solid transparent;
+}
