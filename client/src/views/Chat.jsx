@@ -5,12 +5,15 @@ import { getAllUsersRoute } from "../api/APIRoutes";
 import Contacts from "../components/Contacts";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Welcome from "./Welcome";
+import ChatContainer from "../components/ChatContainer";
 
 export default function Chat() {
 	const navigate = useNavigate();
 	const [contacts, setContacts] = useState([]);
 	const [currentUser, setCurrentUser] = useState(undefined);
 	const [currentChat, setCurrentChat] = useState(undefined);
+	const [isLoaded, setIsLoaded] = useState(false);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -21,6 +24,7 @@ export default function Chat() {
 
 			const user = JSON.parse(localStorage.getItem("user"));
 			setCurrentUser(user);
+			setIsLoaded(true);
 
 			if (!user.isAvatarImageSet) {
 				navigate("/setAvatar");
@@ -65,6 +69,11 @@ export default function Chat() {
 					currentUser={currentUser}
 					changeChat={handleChatChange}
 				/>
+				{isLoaded && currentChat === undefined ? (
+					<Welcome currentUser={currentUser} />
+				) : (
+					<ChatContainer currentUser={currentUser} />
+				)}
 			</div>
 			<ToastContainer />
 		</div>
