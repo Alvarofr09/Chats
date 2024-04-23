@@ -8,21 +8,22 @@ import Logo from "../../assets/logo.svg";
 import InputPrueba from "../ui/Prueba";
 import { Link, useNavigate } from "react-router-dom";
 // import { useState } from "react";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { useAuthContext } from "../../context/AuthContext";
 
 export default function LoginForm() {
 	const { login } = useAuthContext();
 	const navigate = useNavigate();
 
-	useEffect(() => {
-		if (localStorage.getItem("user")) {
-			navigate("/");
-		}
-	}, []);
+	// useEffect(() => {
+	// 	if (localStorage.getItem("user")) {
+	// 		navigate("/");
+	// 	}
+	// }, []);
 
 	async function onSubmit(values) {
 		login(values);
+		navigate("/");
 	}
 	return (
 		<>
