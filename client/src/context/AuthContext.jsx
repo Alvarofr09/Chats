@@ -36,6 +36,7 @@ export default function AuthContextProvider({ children }) {
 			password,
 		});
 
+		console.log(data);
 		if (data.status === false) {
 			toast.error(data.msg, toastOptions);
 			setErrorMessage("Error al introducir credenciales");
