@@ -28,12 +28,13 @@ export default function SetAvatar() {
 			navigate("/login");
 		}
 	}, []);
+
 	const setProfilePicture = async () => {
 		if (selectedAvatar === undefined) {
 			toast.error("Please select an avatar", toastOptions);
 		} else {
 			const user = JSON.parse(localStorage.getItem("user"));
-			const { data } = await axios.post(`${setAvatarRoute}/1`, {
+			const { data } = await axios.post(`${setAvatarRoute}/${user.id}`, {
 				image: avatars[selectedAvatar],
 			});
 
@@ -85,7 +86,7 @@ export default function SetAvatar() {
 								<div
 									key={index}
 									className={`avatar border-4 border-transparent p-2 rounded-full flex justify-center items-center transition duration-500 ease-in-out ${
-										selectedAvatar === index ? "border-[#4e0eff]" : ""
+										selectedAvatar === index ? " bg-[#4e0eff] " : ""
 									}`}
 								>
 									<img
