@@ -59,7 +59,7 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
 							);
 						})}
 					</div>
-					<div className="current-user bg-[#0d0d30] flex justify-center items-center gap-8">
+					<div className="current-user bg-[#0d0d30] centered gap-8">
 						<div className="avatar h-16">
 							<img
 								className="h-full "

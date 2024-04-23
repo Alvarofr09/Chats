@@ -72,11 +72,11 @@ export default function SetAvatar() {
 	return (
 		<>
 			{isLoading ? (
-				<div className="flex justify-center items-center flex-col gap-12 bg-[#131324] h-screen w-screen">
+				<div className="centered flex-col gap-12 bg-[#131324] h-screen w-screen">
 					<img src={loader} alt="loader" className="w-32 h-32" />
 				</div>
 			) : (
-				<div className="flex justify-center items-center flex-col gap-12 bg-[#131324] h-screen w-screen">
+				<div className="centered flex-col gap-12 bg-[#131324] h-screen w-screen">
 					<div className="title-container">
 						<h1 className="text-white text-3xl">Pick an avatar</h1>
 					</div>
