@@ -8,6 +8,9 @@ import "react-toastify/dist/ReactToastify.css";
 import Welcome from "./Welcome";
 import ChatContainer from "../components/ChatContainer";
 
+import { jwtDecode } from "jwt-decode";
+// import jwt from "jsonwebtoken";
+
 export default function Chat() {
 	const navigate = useNavigate();
 	const [contacts, setContacts] = useState([]);
@@ -17,12 +20,21 @@ export default function Chat() {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			if (!localStorage.getItem("user")) {
+			if (!localStorage.getItem("token")) {
 				navigate("/login");
 				return;
 			}
 
-			const user = JSON.parse(localStorage.getItem("user"));
+			const token = JSON.parse(localStorage.getItem("token"));
+			console.log(token);
+
+			const user = jwtDecode(token);
+
+			// const user = verify(token, "8ZxUbKjJro");
+			// const user = jwt.verify(token, "8ZxUbKjJro");
+
+			console.log(user);
+
 			setCurrentUser(user);
 			setIsLoaded(true);
 
@@ -72,7 +84,7 @@ export default function Chat() {
 				{isLoaded && currentChat === undefined ? (
 					<Welcome currentUser={currentUser} />
 				) : (
-					<ChatContainer currentUser={currentUser} />
+					<ChatContainer currentChat={currentChat} />
 				)}
 			</div>
 			<ToastContainer />
