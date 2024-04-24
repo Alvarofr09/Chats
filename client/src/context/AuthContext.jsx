@@ -19,13 +19,13 @@ export default function AuthContextProvider({ children }) {
 		draggable: true,
 		theme: "dark",
 	};
-	let userStorage = JSON.parse(localStorage.getItem("user") || null);
+	let userStorage = JSON.parse(localStorage.getItem("token") || null);
 
 	const [auth, setAuth] = useState(userStorage);
 	const [errorMessage, setErrorMessage] = useState("");
 
 	useEffect(() => {
-		localStorage.setItem("user", JSON.stringify(auth));
+		localStorage.setItem("token", JSON.stringify(auth));
 	}, [auth]);
 
 	async function login(user) {
@@ -36,12 +36,11 @@ export default function AuthContextProvider({ children }) {
 			password,
 		});
 
-		console.log(data);
 		if (data.status === false) {
 			toast.error(data.msg, toastOptions);
 			setErrorMessage("Error al introducir credenciales");
 		} else {
-			setAuth(data.user);
+			setAuth(data.token);
 			setErrorMessage("");
 			toast.success(data.msg, toastOptions);
 		}
@@ -49,7 +48,7 @@ export default function AuthContextProvider({ children }) {
 
 	function logout() {
 		setAuth(null);
-		localStorage.removeItem("user");
+		localStorage.removeItem("token");
 		navigate("/login");
 	}
 
