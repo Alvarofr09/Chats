@@ -1,6 +1,7 @@
 const dao = require("../services/dao/userDao");
+const { SignJWT } = require("jose");
+const jwt = require("jsonwebtoken");
 const md5 = require("md5");
-const path = require("path");
 
 const userRegister = async (req, res, next) => {
 	try {
@@ -36,8 +37,10 @@ const userRegister = async (req, res, next) => {
 };
 
 const userLogin = async (req, res, next) => {
+	const { email, password } = req.body;
+
+	if (!email || !password) return res.status(400).send("Error en el body");
 	try {
-		const { email, password } = req.body;
 		console.log(req.body);
 
 		let user = await dao.getUserByEmail(email);
@@ -48,9 +51,19 @@ const userLogin = async (req, res, next) => {
 
 		if (user.password !== clientPassword) return res.sendStatus(401);
 
-		delete user.password;
+		// GENERAR TOKEN
+		const token = jwt.sign(
+			{
+				id: user.id,
+				username: user.username,
+				email: user.email,
+				isAvatarImageSet: user.isAvatarImageSet,
+				avatarImage: user.avatarImage,
+			},
+			process.env.JWT_SECRET || "8ZxUbKjJro"
+		);
 
-		res.status(201).json({ user, status: true });
+		res.status(201).json({ token, status: true });
 	} catch (error) {
 		next(error);
 	}
