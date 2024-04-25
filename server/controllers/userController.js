@@ -52,16 +52,25 @@ const userLogin = async (req, res, next) => {
 		if (user.password !== clientPassword) return res.sendStatus(401);
 
 		// GENERAR TOKEN
-		const token = jwt.sign(
-			{
-				id: user.id,
-				username: user.username,
-				email: user.email,
-				isAvatarImageSet: user.isAvatarImageSet,
-				avatarImage: user.avatarImage,
-			},
-			process.env.JWT_SECRET || "8ZxUbKjJro"
-		);
+		const jwtConstructor = new SignJWT({
+			id: user.id,
+			username: user.username,
+			email: user.email,
+			isAvatarImageSet: user.isAvatarImageSet,
+			avatarImage: user.avatarImage,
+		});
+
+		// Codificamos la clave secreta definida en la variable de entorno por requisito de la libreria jose
+		// y poder pasarla en el formato correcto (uint8Array) en el metodo .sign
+		const encoder = new TextEncoder();
+
+		// Generamos el JWT. Lo hacemos asincrono, ya que nos devuelve una promesa.
+		// Le indicamos la cabecera, la creacion, la expiracion y la firma (clave secreta)
+		const token = await jwtConstructor
+			.setProtectedHeader({ alg: "HS256", typ: "JWT" })
+			.setIssuedAt()
+			.setExpirationTime("1h")
+			.sign(encoder.encode("8ZxUbKjJro"));
 
 		res.status(201).json({ token, status: true });
 	} catch (error) {
@@ -95,7 +104,29 @@ const setAvatar = async (req, res, next) => {
 			let userData = await dao.getUserById(userId);
 			[userData] = userData;
 
+			// GENERAR TOKEN
+			const jwtConstructor = new SignJWT({
+				id: userData.id,
+				username: userData.username,
+				email: userData.email,
+				isAvatarImageSet: userData.isAvatarImageSet,
+				avatarImage: userData.avatarImage,
+			});
+
+			// Codificamos la clave secreta definida en la variable de entorno por requisito de la libreria jose
+			// y poder pasarla en el formato correcto (uint8Array) en el metodo .sign
+			const encoder = new TextEncoder();
+
+			// Generamos el JWT. Lo hacemos asincrono, ya que nos devuelve una promesa.
+			// Le indicamos la cabecera, la creacion, la expiracion y la firma (clave secreta)
+			const token = await jwtConstructor
+				.setProtectedHeader({ alg: "HS256", typ: "JWT" })
+				.setIssuedAt()
+				.setExpirationTime("1h")
+				.sign(encoder.encode("8ZxUbKjJro"));
+
 			return res.json({
+				token,
 				isSet: userData.isAvatarImageSet,
 				image: userData.avatarImage,
 			});
