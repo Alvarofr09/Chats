@@ -8,6 +8,8 @@ import "react-toastify/ReactToastify.css";
 import axios from "axios";
 import { setAvatarRoute } from "../api/APIRoutes";
 
+import { jwtDecode } from "jwt-decode";
+
 export default function SetAvatar() {
 	const api = "https://api.multiavatar.com/45678945";
 	const navigate = useNavigate();
@@ -24,7 +26,7 @@ export default function SetAvatar() {
 	};
 
 	useEffect(() => {
-		if (!localStorage.getItem("user")) {
+		if (!localStorage.getItem("token")) {
 			navigate("/login");
 		}
 	}, []);
@@ -33,15 +35,15 @@ export default function SetAvatar() {
 		if (selectedAvatar === undefined) {
 			toast.error("Please select an avatar", toastOptions);
 		} else {
-			const user = JSON.parse(localStorage.getItem("user"));
+			const token = JSON.parse(localStorage.getItem("token"));
+			const user = jwtDecode(token);
 			const { data } = await axios.post(`${setAvatarRoute}/${user.id}`, {
 				image: avatars[selectedAvatar],
 			});
 
 			if (data.isSet) {
-				user.isAvatarImageSet = true;
-				user.avatarImage = data.image;
-				localStorage.setItem("user", JSON.stringify(user));
+				console.log(data);
+				localStorage.setItem("token", JSON.stringify(user));
 				navigate("/");
 			} else {
 				toast.error("Error setting avatar. Please try again.", toastOptions);
