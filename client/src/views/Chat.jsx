@@ -6,7 +6,7 @@ import Contacts from "../components/Contacts";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Welcome from "./Welcome";
-import ChatContainer from "../components/ChatContainer";
+import ChatContainer from "../components/Chat/ChatContainer";
 
 import { jwtDecode } from "jwt-decode";
 // import jwt from "jsonwebtoken";
@@ -25,13 +25,11 @@ export default function Chat() {
 				return;
 			}
 
-			const token = JSON.parse(localStorage.getItem("token"));
+			const token = localStorage.getItem("token");
 			console.log(token);
+			console.log(typeof token);
 
 			const user = jwtDecode(token);
-
-			// const user = verify(token, "8ZxUbKjJro");
-			// const user = jwt.verify(token, "8ZxUbKjJro");
 
 			console.log(user);
 
