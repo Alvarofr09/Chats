@@ -13,6 +13,7 @@
     "@tabler/icons-react": "^3.2.0",
     "axios": "^1.6.8",
     "buffer": "^6.0.3",
+    "emoji-picker-react": "^4.9.2",
     "formik": "^2.4.5",
     "jose": "^5.2.4",
     "jsonwebtoken": "^9.0.2",

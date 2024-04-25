@@ -127,8 +127,6 @@ const setAvatar = async (req, res, next) => {
 
 			return res.json({
 				token,
-				isSet: userData.isAvatarImageSet,
-				image: userData.avatarImage,
 			});
 		}
 

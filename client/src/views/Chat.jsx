@@ -6,7 +6,7 @@ import Contacts from "../components/Contacts";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Welcome from "./Welcome";
-import ChatContainer from "../components/ChatContainer";
+import ChatContainer from "../components/Chat/ChatContainer";
 
 import { jwtDecode } from "jwt-decode";
 // import jwt from "jsonwebtoken";
@@ -26,40 +26,32 @@ export default function Chat() {
 			}
 
 			const token = localStorage.getItem("token");
+			console.log(token);
 
-			if (typeof token !== "string") {
-				// Manejo del error: token no es un string válido
-				console.error("El token almacenado no es un string válido.");
+			const user = jwtDecode(token);
+
+			console.log(user);
+
+			setCurrentUser(user);
+			setIsLoaded(true);
+
+			if (!user.isAvatarImageSet) {
+				navigate("/setAvatar");
 				return;
 			}
 
 			try {
-				const user = jwtDecode(token);
-				setCurrentUser(user);
-				setIsLoaded(true);
-				// Resto del código
-
-				if (!user.isAvatarImageSet) {
-					navigate("/setAvatar");
-					return;
-				}
-
-				try {
-					const response = await axios.get(`${getAllUsersRoute}/${user.id}`);
-					setContacts(response.data.users);
-				} catch (error) {
-					console.error("Error fetching contacts:", error);
-					toast.error("Error fetching contacts. Please try again.", {
-						position: "bottom-right",
-						autoClose: 5000,
-						pauseOnHover: true,
-						draggable: true,
-						theme: "dark",
-					});
-				}
+				const response = await axios.get(`${getAllUsersRoute}/${user.id}`);
+				setContacts(response.data.users);
 			} catch (error) {
-				console.error("Error al decodificar el token:", error);
-				// Manejo del error al decodificar el token
+				console.error("Error fetching contacts:", error);
+				toast.error("Error fetching contacts. Please try again.", {
+					position: "bottom-right",
+					autoClose: 5000,
+					pauseOnHover: true,
+					draggable: true,
+					theme: "dark",
+				});
 			}
 		};
 

@@ -35,22 +35,14 @@ export default function SetAvatar() {
 			toast.error("Please select an avatar", toastOptions);
 		} else {
 			const token = JSON.parse(localStorage.getItem("token"));
-
 			const user = jwtDecode(token);
-
-			// const user = verify(token, "8ZxUbKjJro");
-			// const user = jwt.verify(token, "8ZxUbKjJro");
-
-			console.log(user);
 			const { data } = await axios.post(`${setAvatarRoute}/${user.id}`, {
 				image: avatars[selectedAvatar],
 			});
 
 			if (data.isSet) {
-				user.isAvatarImageSet = true;
-				user.avatarImage = data.image;
-
-				localStorage.setItem("token", JSON.stringify(data.token));
+				console.log(data);
+				localStorage.setItem("token", JSON.stringify(user));
 				navigate("/");
 			} else {
 				toast.error("Error setting avatar. Please try again.", toastOptions);
