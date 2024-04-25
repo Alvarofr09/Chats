@@ -7,6 +7,8 @@ export const loginRoute = `/api/auth/login`;
 export const setAvatarRoute = `${host}/api/auth/setAvatar`;
 export const getAllUsersRoute = `${host}/api/auth/allUsers`;
 
+export const sendMessageRoute = `${host}/api/messages/add-message`;
+
 export const userApi = axios.create({
 	baseURL: `${host}`,
 });
