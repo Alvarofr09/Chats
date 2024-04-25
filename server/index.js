@@ -5,6 +5,7 @@ const fileUpload = require("express-fileupload");
 
 const db = require("./services/db");
 const userRouter = require("./routers/userRoutes");
+const messageRouter = require("./routers/messagesRoutes");
 
 const createUsersTable = async () => {
 	let conn = null;
@@ -38,10 +39,14 @@ const createMessagesTable = async () => {
 
 		let SqlQuery = `
 		CREATE TABLE IF NOT EXISTS messages (
-			id INT AUTO_INCREMENT, 
-			username VARCHAR(255), 
-			text longtext, 
-			PRIMARY KEY (id)
+    		id INT AUTO_INCREMENT, 
+    		sender_id INT, 
+    		receiver_id INT,
+    		text LONGTEXT,
+    		date DATETIME, 
+    		PRIMARY KEY (id),
+    		FOREIGN KEY (sender_id) REFERENCES users(id),
+    		FOREIGN KEY (receiver_id) REFERENCES users(id)
 		) `;
 		await db.query(SqlQuery, null, "create", conn);
 	} catch (error) {
@@ -75,6 +80,7 @@ createUsersTable();
 createMessagesTable();
 
 app.use("/api/auth", userRouter);
+app.use("/api/messages", messageRouter);
 
 // const conn = db.createConection();
 
