@@ -95,9 +95,19 @@ const setAvatar = async (req, res, next) => {
 			let userData = await dao.getUserById(userId);
 			[userData] = userData;
 
+			const token = jwt.sign(
+				{
+					id: user.id,
+					username: user.username,
+					email: user.email,
+					isAvatarImageSet: user.isAvatarImageSet,
+					avatarImage: user.avatarImage,
+				},
+				process.env.JWT_SECRET || "8ZxUbKjJro"
+			);
+
 			return res.json({
-				isSet: userData.isAvatarImageSet,
-				image: userData.avatarImage,
+				token,
 			});
 		}
 
