@@ -28,6 +28,7 @@ export default function SetAvatar() {
 		if (!localStorage.getItem("token")) {
 			navigate("/login");
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const setProfilePicture = async () => {
