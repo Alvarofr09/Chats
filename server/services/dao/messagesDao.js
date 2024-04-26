@@ -28,14 +28,32 @@ messageDao.addMessage = async (messageData) => {
 	}
 };
 
-messageDao.getUserById = async (id) => {
+messageDao.getSendedMessages = async (from, to) => {
 	let conn = null;
 	try {
 		conn = await db.createConection();
 
 		return await db.query(
-			"SELECT * FROM users WHERE id = ?",
-			[id],
+			"SELECT * FROM messages WHERE sender_id = ? AND receiver_id = ?",
+			[from, to],
+			"select",
+			conn
+		);
+	} catch (error) {
+		throw new Error(error);
+	} finally {
+		conn && (await conn.end());
+	}
+};
+
+messageDao.getRecievedMessages = async (from, to) => {
+	let conn = null;
+	try {
+		conn = await db.createConection();
+
+		return await db.query(
+			"SELECT * FROM messages WHERE sender_id = ? AND receiver_id = ?",
+			[to, from],
 			"select",
 			conn
 		);
