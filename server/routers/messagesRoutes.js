@@ -8,6 +8,6 @@ const messageRouter = express.Router();
 
 messageRouter.post("/add-message", addMessage);
 
-messageRouter.post("/getmessages", getAllMessages);
+messageRouter.post("/getMessages", getAllMessages);
 
 module.exports = messageRouter;
