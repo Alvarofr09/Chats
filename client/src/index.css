@@ -128,3 +128,19 @@ input:focus ~ .input-text {
 .epr-body::-webkit-scrollbar-thumb {
 	@apply bg-[#9186f3];
 }
+
+.sended {
+	@apply justify-end;
+}
+
+.sended .content {
+	@apply bg-[#4f40ff21];
+}
+
+.recieved {
+	@apply justify-start;
+}
+
+.recieved .content {
+	@apply bg-[#9900ff20];
+}
