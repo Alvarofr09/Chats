@@ -68,9 +68,9 @@ export default function Chat() {
 				className="container h-[85%] w-[85%] bg-[#00000076] grid grid-cols-2 lg:grid-cols-[35% 65%]"
 				style={{
 					gridTemplateColumns: "25% 75%",
-					// "@media (min-width: 720px) and (max-width: 1080px)": {
-					// 	gridTemplateColumns: "35% 65%",
-					// },
+					"@media (min-width: 720px) and (max-width: 1080px)": {
+						gridTemplateColumns: "35% 65%",
+					},
 				}}
 			>
 				<Contacts
