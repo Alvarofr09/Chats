@@ -11,7 +11,7 @@ export default function ChatInput({ handleSendMsg }) {
 		setShowEmojiPicker(!showEmojiPicker);
 	};
 
-	const handleEmojiClick = (emoji, event) => {
+	const handleEmojiClick = (emoji) => {
 		let msg = message;
 		msg += emoji.emoji;
 		setMessage(msg);
@@ -54,7 +54,7 @@ export default function ChatInput({ handleSendMsg }) {
 					value={message}
 					onChange={(e) => setMessage(e.target.value)}
 					placeholder="Type your message here"
-					className="w-[90%] h-[60%] bg-transparent border-none pl-4 text-xl text-white selection:bg-[#9186f3] focus:outline-none"
+					className="w-[90%]  bg-transparent border-none pl-4 text-xl text-white selection:bg-[#9186f3] focus:outline-none"
 				/>
 				<button
 					type="submit"
