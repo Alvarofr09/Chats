@@ -1,17 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { getAllUsersRoute } from "../api/APIRoutes";
+import { getAllUsersRoute, host } from "../api/APIRoutes";
 import Contacts from "../components/Contacts";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Welcome from "./Welcome";
 import ChatContainer from "../components/Chat/ChatContainer";
+import { io } from "socket.io-client";
 
 import { jwtDecode } from "jwt-decode";
-// import jwt from "jsonwebtoken";
 
 export default function Chat() {
+	const socket = useRef();
 	const navigate = useNavigate();
 	const [contacts, setContacts] = useState([]);
 	const [currentUser, setCurrentUser] = useState(undefined);
@@ -58,6 +59,13 @@ export default function Chat() {
 		fetchData();
 	}, [navigate]);
 
+	useEffect(() => {
+		if (currentUser) {
+			socket.current = io(host);
+			socket.current.emit("add-user", currentUser.id);
+		}
+	}, [currentUser]);
+
 	const handleChatChange = (chat) => {
 		setCurrentChat(chat);
 	};
@@ -81,7 +89,11 @@ export default function Chat() {
 				{isLoaded && currentChat === undefined ? (
 					<Welcome currentUser={currentUser} />
 				) : (
-					<ChatContainer currentChat={currentChat} currentUser={currentUser} />
+					<ChatContainer
+						currentChat={currentChat}
+						currentUser={currentUser}
+						socket={socket}
+					/>
 				)}
 			</div>
 			<ToastContainer />
