@@ -10,6 +10,10 @@ export const getAllUsersRoute = `${host}/api/auth/allUsers`;
 export const sendMessageRoute = `${host}/api/messages/add-message`;
 export const getAllMessages = `${host}/api/messages/getMessages`;
 
+export const createGroupRoute = `${host}/api/groups/create-group`;
+export const joinGroupRoute = `${host}/api/groups/join-group`;
+export const getAllGroups = `${host}/api/groups/get-groups`;
+
 export const userApi = axios.create({
 	baseURL: `${host}`,
 });
