@@ -22,7 +22,7 @@ const addGroup = async (req, res, next) => {
 	}
 };
 
-const addToGroup = async (req, res, next) => {
+const joinGroup = async (req, res, next) => {
 	try {
 		const { group_id, user_id } = req.body;
 
@@ -31,7 +31,7 @@ const addToGroup = async (req, res, next) => {
 			user_id,
 		};
 
-		const data = await dao.addToGroup(membershipData);
+		const data = await dao.joinGroup(membershipData);
 
 		if (!data)
 			return res
@@ -61,4 +61,4 @@ const getAllGroups = async (req, res, next) => {
 	}
 };
 
-module.exports = { addGroup, addToGroup, getAllGroups };
+module.exports = { addGroup, joinGroup, getAllGroups };

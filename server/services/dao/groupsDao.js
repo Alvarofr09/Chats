@@ -21,7 +21,7 @@ groupDao.createGroup = async (groupData) => {
 	}
 };
 
-groupDao.addToGroup = async (membershipData) => {
+groupDao.joinGroup = async (membershipData) => {
 	let conn = null;
 	try {
 		conn = await db.createConection();
