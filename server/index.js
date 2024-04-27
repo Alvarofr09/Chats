@@ -7,6 +7,7 @@ const socket = require("socket.io");
 const db = require("./services/db");
 const userRouter = require("./routers/userRoutes");
 const messageRouter = require("./routers/messagesRoutes");
+const groupRouter = require("./routers/groupsRoutes");
 
 const createUsersTable = async () => {
 	let conn = null;
@@ -57,6 +58,47 @@ const createMessagesTable = async () => {
 	}
 };
 
+const createGroupsTable = async () => {
+	let conn = null;
+	try {
+		conn = await db.createConection();
+
+		let SqlQuery = `
+		CREATE TABLE IF NOT EXISTS groups (
+    		id INT AUTO_INCREMENT PRIMARY KEY,
+    		group_name VARCHAR(255) NOT NULL,
+    		description TEXT,
+    		creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+		); `;
+		await db.query(SqlQuery, null, "create", conn);
+	} catch (error) {
+		throw new Error(error);
+	} finally {
+		conn && (await conn.end());
+	}
+};
+
+const createMembershipTable = async () => {
+	let conn = null;
+	try {
+		conn = await db.createConection();
+
+		let SqlQuery = `
+		CREATE TABLE IF NOT EXISTS group_membership (
+    		id INT AUTO_INCREMENT PRIMARY KEY,
+    		group_id INT,
+    		user_id INT,
+    		FOREIGN KEY (id_group) REFERENCES groups(id),
+    		FOREIGN KEY (id_user) REFERENCES users(id)
+		); `;
+		await db.query(SqlQuery, null, "create", conn);
+	} catch (error) {
+		throw new Error(error);
+	} finally {
+		conn && (await conn.end());
+	}
+};
+
 const app = express();
 
 dotenv.config();
@@ -80,9 +122,12 @@ app.use(express.urlencoded({ extended: true }));
 
 createUsersTable();
 createMessagesTable();
+createGroupsTable();
+createMembershipTable();
 
 app.use("/api/auth", userRouter);
 app.use("/api/messages", messageRouter);
+app.use("/api/groups", groupRouter);
 
 // const conn = db.createConection();
 
