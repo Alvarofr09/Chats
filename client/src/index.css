@@ -30,12 +30,14 @@ input:focus ~ .input-text {
 }
 
 .container-form {
-	@apply h-screen w-screen flex flex-col justify-center gap-4 items-center bg-gray-900;
+	@apply h-screen w-[90%] lg:w-screen flex flex-col justify-center lg:gap-4 lg:bg-gray-900;
 }
 /* my-20 */
 .register-form {
 	border-radius: 2em;
-	@apply flex flex-col gap-6 bg-black bg-opacity-50 py-12 px-20;
+	@apply flex flex-col gap-6;
+
+	/* py-12 px-20 */
 }
 
 .brand {
