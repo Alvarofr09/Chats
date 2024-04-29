@@ -36,8 +36,8 @@ app.use(express.text());
 app.use(express.urlencoded({ extended: true }));
 
 createUsersTable();
-createMessagesTable();
 createGroupsTable();
+createMessagesTable();
 createMembershipTable();
 
 app.use("/api/auth", userRouter);
