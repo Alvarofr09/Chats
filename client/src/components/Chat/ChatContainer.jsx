@@ -1,7 +1,8 @@
 import ChatInput from "./ChatInput";
+import ChatHeader from "./ChatHeader";
+import Messages from "./Messages";
 
 import axios from "axios";
-import { v4 as uuidv4 } from "uuid";
 
 import { getAllMessages, sendMessageRoute } from "../../api/APIRoutes";
 import { useEffect, useRef, useState } from "react";
@@ -70,39 +71,8 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
 					className="container pt-4 grid grid-rows-3 gap-1 overflow-hidden"
 					style={{ gridTemplateRows: "10% 78% 12%" }}
 				>
-					<div className="chat-header flex justify-between items-center px-8 py-0">
-						<div className="user-details flex items-center gap-4">
-							<div className="user-image">
-								<img
-									className="h-12"
-									src={`data:image/svg+xml;base64,${currentChat.avatarImage}`}
-									alt="avatar"
-								/>
-							</div>
-							<div className="username">
-								<h3 className="text-white text-xl font-bold">
-									{currentChat.username}
-								</h3>
-							</div>
-						</div>
-					</div>
-					<div className="chat-messages py-4 px-8 flex flex-col gap-4 overflow-auto">
-						{messages.map((message) => {
-							return (
-								<div ref={scrollRef} key={uuidv4()}>
-									<div
-										className={`message  flex items-center ${
-											message.fromSelf ? "sended" : "recieved"
-										}`}
-									>
-										<div className="content max-w-[40%] overflow-wrap-break-word p-4 text-lg rounded-2xl text-[#d1d1d1]">
-											{message.message}
-										</div>
-									</div>
-								</div>
-							);
-						})}
-					</div>
+					<ChatHeader currentChat={currentChat} />
+					<Messages messages={messages} scrollRef={scrollRef} />
 					<ChatInput handleSendMsg={handleSendMsg} />
 				</div>
 			)}
