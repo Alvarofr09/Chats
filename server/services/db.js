@@ -41,7 +41,11 @@ db.query = async (sqlQuery, params, type, conn) => {
 				}
 
 			case "create":
-				return true;
+				if (result.warningStatus === 0) {
+					return true; // Indica que la tabla se creó correctamente
+				} else {
+					return false; // Indica que hubo un problema al crear la tabla
+				}
 			default:
 				throw new Error("Query type not found");
 		}
