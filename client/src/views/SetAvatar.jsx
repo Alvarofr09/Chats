@@ -41,9 +41,9 @@ export default function SetAvatar() {
 				image: avatars[selectedAvatar],
 			});
 
-			if (data.isSet) {
-				console.log(data);
-				localStorage.setItem("token", JSON.stringify(user));
+			const userData = jwtDecode(data.token);
+			if (userData.isAvatarImageSet) {
+				localStorage.setItem("token", JSON.stringify(data));
 				navigate("/");
 			} else {
 				toast.error("Error setting avatar. Please try again.", toastOptions);
