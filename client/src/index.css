@@ -25,17 +25,13 @@
 	@apply border-4 border-transparent p-2 rounded-full flex justify-center items-center transition duration-500 ease-in-out;
 }
 
-input:focus ~ .input-text {
-	@apply text-purple-400 bg-black transform -translate-y-9 -translate-x-4;
-}
-
 .container-form {
 	@apply h-screen w-[90%] lg:w-screen flex flex-col justify-center lg:gap-4 lg:bg-gray-900;
 }
 /* my-20 */
 .register-form {
 	border-radius: 2em;
-	@apply flex flex-col gap-6;
+	@apply flex flex-col gap-6 justify-center items-center;
 
 	/* py-12 px-20 */
 }
@@ -53,11 +49,11 @@ input:focus ~ .input-text {
 }
 
 .register-input {
-	@apply h-16 w-96 px-6 text-4xl bg-black border-2 rounded-lg border-purple-600 border-opacity-50 outline-none focus:border-purple-400 focus:text-white transition duration-200;
+	@apply h-16 w-[90%] px-6 text-3xl placeholder:text-[#1D1D1B] text-[#1D1D1B] bg-[#D9D9D9] bg-opacity-80 border-2 rounded-[30px] border-none border-opacity-50 outline-none focus:border-purple-400  transition duration-200;
 }
 
 .input-error {
-	@apply h-16 w-96 px-6 text-4xl bg-black border-2 rounded-lg border-red-600 border-opacity-50 outline-none focus:border-red-500 focus:text-white transition duration-200;
+	@apply h-16 w-[90%] px-6 text-3xl placeholder:text-[#1D1D1B] text-[#1D1D1B] bg-[#D9D9D9] bg-opacity-80 border-2 rounded-[30px] border-red-600 border-opacity-50 outline-none focus:border-red-500  transition duration-200;
 }
 
 .btn-primary {
