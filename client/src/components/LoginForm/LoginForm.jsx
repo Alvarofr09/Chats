@@ -22,7 +22,7 @@ export default function LoginForm() {
 	// }, []);
 
 	async function onSubmit(values) {
-		login(values);
+		await login(values);
 		navigate("/");
 	}
 	return (
