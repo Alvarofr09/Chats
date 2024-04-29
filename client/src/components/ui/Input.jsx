@@ -1,20 +1,40 @@
 import { useField } from "formik";
+import { useState } from "react";
+import { IconEye, IconEyeClosed } from "@tabler/icons-react";
 
-export default function Input({ label, ...props }) {
+export default function Input({ type, ...props }) {
 	const [field, meta] = useField(props);
+	const [showPassword, setShowPassword] = useState(false);
+
+	const toggleShowPassword = () => {
+		setShowPassword((prevState) => !prevState);
+	};
+
 	return (
 		<>
-			{/* <label className="text-blue-500 text-xs font-semibold relative top-2 ml-[7px] px-[3px] bg-[#e8e8e8] w-fit">
-				{label}
-			</label> */}
-			<input
-				{...props}
-				{...field}
-				className={
-					meta.touched && meta.error ? "input-error" : "register-input"
-				}
-				// className="border-blue-500 input px-[10px] py-[11px] text-xs bg-[#e8e8e8] border-2 rounded-[5px] focus:outline-none placeholder:text-black/25"
-			/>
+			<div className="input-container relative">
+				<input
+					{...props}
+					{...field}
+					type={showPassword ? "text" : type} // Cambia dinámicamente el tipo de entrada
+					className={
+						meta.touched && meta.error ? "input-error" : "register-input"
+					}
+				/>
+				{type === "password" && (
+					<button
+						type="button"
+						className="absolute inset-y-0 right-0 px-3 flex items-center bg-transparent focus:outline-none"
+						onClick={toggleShowPassword}
+					>
+						{showPassword ? (
+							<IconEyeClosed className="translate-x-[-30px]" />
+						) : (
+							<IconEye className="translate-x-[-30px]" />
+						)}
+					</button>
+				)}
+			</div>
 			{meta.touched && meta.error && <div className="error">{meta.error}</div>}
 		</>
 	);
