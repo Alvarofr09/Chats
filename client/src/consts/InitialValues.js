@@ -1,6 +1,7 @@
 export const RegisterFormInitialValues = {
 	username: "",
 	email: "",
+	confirmEmail: "",
 	password: "",
 	confirmPassword: "",
 	acceptedTC: false,
