@@ -5,8 +5,9 @@ import { LoginFormSchema } from "./LoginFormSchema";
 
 import Logo from "../../assets/logo.svg";
 
-import InputPrueba from "../ui/Prueba";
-import { Link, useNavigate } from "react-router-dom";
+import ButtonGroup from "../ui/ButtonGroup";
+import Input from "../ui/Input";
+import { useNavigate } from "react-router-dom";
 // import { useState } from "react";
 // import { useEffect } from "react";
 import { useAuthContext } from "../../context/AuthContext";
@@ -32,7 +33,7 @@ export default function LoginForm() {
 				validationSchema={LoginFormSchema}
 				onSubmit={onSubmit}
 			>
-				{(values, errors, isSubmitting) => (
+				{() => (
 					<div className="container-form">
 						<Form className="register-form">
 							<div className="brand ">
@@ -40,23 +41,18 @@ export default function LoginForm() {
 								<h1 className="titulo">Trademiun</h1>
 							</div>
 
-							<InputPrueba label="Email" name="email" type="email" />
+							<Input placeholder="Email" name="email" type="email" />
 
-							<InputPrueba label="Password" name="password" type="password" />
+							<Input placeholder="Password" name="password" type="password" />
 
-							<button
-								className="btn-primary"
-								type="submit"
-								disabled={isSubmitting}
-							>
-								Login
-							</button>
-							<span className="titulo">
+							<ButtonGroup />
+
+							{/* <span className="titulo">
 								Don´t have an account ?{" "}
 								<Link className="link" to="/register">
 									Register
 								</Link>
-							</span>
+							</span> */}
 						</Form>
 					</div>
 				)}
