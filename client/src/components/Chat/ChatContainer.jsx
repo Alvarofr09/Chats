@@ -1,5 +1,4 @@
 import ChatInput from "./ChatInput";
-import Logout from "../Logout";
 
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
@@ -86,7 +85,6 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
 								</h3>
 							</div>
 						</div>
-						<Logout />
 					</div>
 					<div className="chat-messages py-4 px-8 flex flex-col gap-4 overflow-auto">
 						{messages.map((message) => {
