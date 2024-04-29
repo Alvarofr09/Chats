@@ -1,6 +1,6 @@
 const dao = require("../services/dao/groupsDao");
 
-const addGroup = async (req, res, next) => {
+const createGroup = async (req, res, next) => {
 	try {
 		const { group_name, description } = req.body;
 
@@ -61,4 +61,4 @@ const getAllGroups = async (req, res, next) => {
 	}
 };
 
-module.exports = { addGroup, joinGroup, getAllGroups };
+module.exports = { createGroup, joinGroup, getAllGroups };
