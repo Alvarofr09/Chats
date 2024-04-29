@@ -29,11 +29,11 @@ export default function Chat() {
 			}
 
 			const token = localStorage.getItem("token");
-			console.log(token);
+			// console.log(token);
 
 			const user = jwtDecode(token);
 
-			console.log(user);
+			// console.log(user);
 
 			setCurrentUser(user);
 			setIsLoaded(true);
