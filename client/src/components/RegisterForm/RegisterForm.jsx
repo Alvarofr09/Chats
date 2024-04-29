@@ -86,7 +86,7 @@ export default function RegisterForm() {
 						<Form className="register-form">
 							<div className="brand ">
 								<img src={Logo} alt="Logo" className="h-20" />
-								<h1 className="titulo">Tradeium</h1>
+								<h1 className="titulo">Trademiun</h1>
 							</div>
 
 							<InputPrueba label="Username" name="username" type="text" />

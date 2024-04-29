@@ -32,7 +32,7 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
 				>
 					<div className="brand ">
 						<img src={Logo} alt="Logo" className="h-8" />
-						<h1 className="titulo uppercase">Tradeium</h1>
+						<h1 className="titulo uppercase">Trademiun</h1>
 					</div>
 					<div className="contacts ">
 						{contacts.map((contact, index) => {
