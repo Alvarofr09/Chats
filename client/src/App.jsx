@@ -3,7 +3,8 @@ import Register from "./views/Register";
 import Chat from "./views/Chat";
 import Login from "./views/Login";
 import AuthContextProvider from "./context/AuthContext";
-import SetAvatar from "./views/SetAvatar";
+// import SetAvatar from "./views/SetAvatar";
+import Forms from "./views/Forms";
 
 export default function App() {
 	return (
@@ -12,7 +13,7 @@ export default function App() {
 				<Routes>
 					<Route path="/register" element={<Register />} />
 					<Route path="/login" element={<Login />} />
-					<Route path="/setAvatar" element={<SetAvatar />} />
+					<Route path="/forms" element={<Forms />} />
 					<Route path="/" element={<Chat />} />
 				</Routes>
 			</AuthContextProvider>
