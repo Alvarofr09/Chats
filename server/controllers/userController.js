@@ -5,7 +5,7 @@ const md5 = require("md5");
 
 const userRegister = async (req, res, next) => {
 	try {
-		const { username, email, password } = req.body;
+		const { username, email, password, avatarImage } = req.body;
 		console.log(req.body);
 		const usernameCheck = await dao.getUserByUsername(username);
 		console.log(usernameCheck);
@@ -25,6 +25,8 @@ const userRegister = async (req, res, next) => {
 			username,
 			email,
 			password,
+			isAvatarImageSet: true,
+			avatarImage,
 		};
 
 		const user = await dao.createUser(newUser);
