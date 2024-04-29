@@ -5,14 +5,15 @@ import { RegisterFormSchema } from "./RegisterFormSchema";
 
 import Logo from "../../assets/logo.svg";
 
-import InputPrueba from "../ui/Prueba";
 import Checkbox from "../ui/Checkbox";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { registerRoute, userApi } from "../../api/APIRoutes";
 import { useAuthContext } from "../../context/AuthContext";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Buffer } from "buffer";
+import ButtonGroup from "../ui/ButtonGroup";
+import Input from "../ui/Input";
 
 export default function RegisterForm() {
 	const api = "https://api.multiavatar.com/45678945";
@@ -69,7 +70,7 @@ export default function RegisterForm() {
 		if (data.status === false) {
 			toast.error(data.msg, toastOptions);
 		} else {
-			login(user);
+			await login(user);
 
 			navigate("/");
 		}
@@ -81,7 +82,7 @@ export default function RegisterForm() {
 				validationSchema={RegisterFormSchema}
 				onSubmit={onSubmit}
 			>
-				{(values, errors, isSubmitting) => (
+				{() => (
 					<div className="container-form">
 						<Form className="register-form">
 							<div className="brand ">
@@ -89,30 +90,36 @@ export default function RegisterForm() {
 								<h1 className="titulo">Trademiun</h1>
 							</div>
 
-							<InputPrueba label="Username" name="username" type="text" />
+							<Input placeholder="Username" name="username" type="text" />
 
-							<InputPrueba label="Email" name="email" type="email" />
+							<Input placeholder="Email" name="email" type="email" />
+							<Input
+								placeholder="Confirmar Email"
+								name="confirmEmail"
+								type="email"
+							/>
 
-							<InputPrueba label="Password" name="password" type="password" />
-							<InputPrueba
-								label="Confirm Password"
+							<Input placeholder="Password" name="password" type="password" />
+							<Input
+								placeholder="Confirm Password"
 								name="confirmPassword"
 								type="password"
 							/>
 							<Checkbox type="checkbox" name="acceptedTC" />
-							<button
+							{/* <button
 								className="btn-primary"
 								type="submit"
 								disabled={isSubmitting}
 							>
 								Register
-							</button>
-							<span className="titulo">
+							</button> */}
+							<ButtonGroup />
+							{/* <span className="titulo">
 								Already have an account ?{" "}
 								<Link className="link" to="/login">
 									Login
 								</Link>
-							</span>
+							</span> */}
 						</Form>
 					</div>
 				)}
