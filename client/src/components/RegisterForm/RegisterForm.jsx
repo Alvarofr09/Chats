@@ -3,19 +3,20 @@ import { RegisterFormInitialValues } from "../../consts/InitialValues";
 import { ToastContainer, toast } from "react-toastify";
 import { RegisterFormSchema } from "./RegisterFormSchema";
 
-// import SetAvatar from "../../views/SetAvatar";
-
 import Logo from "../../assets/logo.svg";
 
 import InputPrueba from "../ui/Prueba";
 import Checkbox from "../ui/Checkbox";
 import { Link, useNavigate } from "react-router-dom";
-// import { useState } from "react";
 import { registerRoute, userApi } from "../../api/APIRoutes";
-// import { useEffect } from "react";
 import { useAuthContext } from "../../context/AuthContext";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { Buffer } from "buffer";
 
 export default function RegisterForm() {
+	const api = "https://api.multiavatar.com/45678945";
+	const [avatar, setAvatar] = useState(undefined);
 	const { login } = useAuthContext();
 	const navigate = useNavigate();
 	const toastOptions = {
@@ -32,12 +33,33 @@ export default function RegisterForm() {
 	// 	}
 	// }, []);
 
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const image = await axios.get(
+					`${api}/${Math.round(Math.random() * 1000)}`,
+					{ responseType: "arraybuffer" }
+				);
+
+				const buffer = Buffer.from(image.data, "binary");
+				const base64 = buffer.toString("base64");
+
+				setAvatar(base64);
+			} catch (error) {
+				console.error("Error fetching image:", error);
+			}
+		};
+
+		fetchData();
+	}, []);
+
 	async function onSubmit(values) {
 		const { username, email, password } = values;
 		const { data } = await userApi.post(registerRoute, {
 			username,
 			email,
 			password,
+			avatarImage: avatar,
 		});
 		const user = {
 			email,
@@ -49,7 +71,7 @@ export default function RegisterForm() {
 		} else {
 			login(user);
 
-			navigate("/setAvatar");
+			navigate("/");
 		}
 	}
 	return (
