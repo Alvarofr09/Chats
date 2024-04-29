@@ -19,6 +19,8 @@ export default function Chat() {
 	const [currentChat, setCurrentChat] = useState(undefined);
 	const [isLoaded, setIsLoaded] = useState(false);
 
+	// const token = JSON.parse(localStorage.getItem("token"));
+
 	useEffect(() => {
 		const fetchData = async () => {
 			if (!localStorage.getItem("token")) {
