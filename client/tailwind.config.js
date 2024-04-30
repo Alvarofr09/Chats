@@ -8,6 +8,11 @@ export default {
 	],
 	theme: {
 		extend: {},
+		// colors: {
+		// 	primario: "#00c1ff",
+		// 	segundario: "#000000",
+		// 	terciario: "#ffffff",
+		// },
 	},
 	darkMode: "class",
 	plugins: [twElements],
