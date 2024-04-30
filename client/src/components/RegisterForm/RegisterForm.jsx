@@ -3,8 +3,6 @@ import { RegisterFormInitialValues } from "../../consts/InitialValues";
 import { ToastContainer, toast } from "react-toastify";
 import { RegisterFormSchema } from "./RegisterFormSchema";
 
-import Logo from "../../assets/logo.svg";
-
 import Checkbox from "../ui/Checkbox";
 import { useNavigate } from "react-router-dom";
 import { registerRoute, userApi } from "../../api/APIRoutes";
@@ -12,7 +10,6 @@ import { useAuthContext } from "../../context/AuthContext";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Buffer } from "buffer";
-import ButtonGroup from "../ui/ButtonGroup";
 import Input from "../ui/Input";
 
 export default function RegisterForm() {
@@ -55,6 +52,7 @@ export default function RegisterForm() {
 	}, []);
 
 	async function onSubmit(values) {
+		console.log(values);
 		const { username, email, password } = values;
 		const { data } = await userApi.post(registerRoute, {
 			username,
@@ -82,14 +80,9 @@ export default function RegisterForm() {
 				validationSchema={RegisterFormSchema}
 				onSubmit={onSubmit}
 			>
-				{() => (
+				{(values, errors, isSubmitting) => (
 					<div className="container-form">
 						<Form className="register-form">
-							<div className="brand ">
-								<img src={Logo} alt="Logo" className="h-20" />
-								<h1 className="titulo">Trademiun</h1>
-							</div>
-
 							<Input placeholder="Username" name="username" type="text" />
 
 							<Input placeholder="Email" name="email" type="email" />
@@ -106,14 +99,14 @@ export default function RegisterForm() {
 								type="password"
 							/>
 							<Checkbox type="checkbox" name="acceptedTC" />
-							{/* <button
+							<button
 								className="btn-primary"
 								type="submit"
 								disabled={isSubmitting}
 							>
 								Register
-							</button> */}
-							<ButtonGroup />
+							</button>
+							{/* <ButtonGroup /> */}
 							{/* <span className="titulo">
 								Already have an account ?{" "}
 								<Link className="link" to="/login">
