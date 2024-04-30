@@ -5,7 +5,7 @@ const md5 = require("md5");
 
 const userRegister = async (req, res, next) => {
 	try {
-		const { username, email, password, avatarImage } = req.body;
+		const { username, email, password, image } = req.body;
 		console.log(req.body);
 		const usernameCheck = await dao.getUserByUsername(username);
 		console.log(usernameCheck);
@@ -25,8 +25,8 @@ const userRegister = async (req, res, next) => {
 			username,
 			email,
 			password,
-			isAvatarImageSet: true,
-			avatarImage,
+			isImageSet: true,
+			image,
 		};
 
 		const user = await dao.createUser(newUser);
@@ -58,8 +58,8 @@ const userLogin = async (req, res, next) => {
 			id: user.id,
 			username: user.username,
 			email: user.email,
-			isAvatarImageSet: user.isAvatarImageSet,
-			avatarImage: user.avatarImage,
+			isImageSet: user.isImageSet,
+			image: user.image,
 		});
 
 		// Codificamos la clave secreta definida en la variable de entorno por requisito de la libreria jose
@@ -95,8 +95,8 @@ const setAvatar = async (req, res, next) => {
 			if (!user) return res.json({ status: false });
 
 			const userObj = {
-				isAvatarImageSet: true,
-				avatarImage: image,
+				isImageSet: true,
+				image: image,
 			};
 
 			const updatedUser = await dao.updateUser(userId, userObj);
@@ -111,8 +111,8 @@ const setAvatar = async (req, res, next) => {
 				id: userData.id,
 				username: userData.username,
 				email: userData.email,
-				isAvatarImageSet: userData.isAvatarImageSet,
-				avatarImage: userData.avatarImage,
+				isImageSet: userData.isImageSet,
+				image: userData.image,
 			});
 
 			// Codificamos la clave secreta definida en la variable de entorno por requisito de la libreria jose
@@ -132,7 +132,7 @@ const setAvatar = async (req, res, next) => {
 			});
 		}
 
-		// if (user.isAvatarImageSet) return res.json({ isSet: true });
+		// if (user.isImageSet) return res.json({ isSet: true });
 	} catch (error) {
 		next(error);
 	}

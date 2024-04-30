@@ -42,7 +42,7 @@ export default function SetAvatar() {
 			});
 
 			const userData = jwtDecode(data.token);
-			if (userData.isAvatarImageSet) {
+			if (userData.isImageSet) {
 				localStorage.setItem("token", JSON.stringify(data));
 				navigate("/");
 			} else {

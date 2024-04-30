@@ -11,8 +11,8 @@ const createUsersTable = async () => {
         password VARCHAR(255),
         userRole BOOLEAN DEFAULT FALSE,
         superAdmin BOOLEAN DEFAULT FALSE,
-        isAvatarImageSet BOOLEAN DEFAULT FALSE,
-        avatarImage TEXT,
+        isImageSet BOOLEAN DEFAULT FALSE,
+        image TEXT,
         registerDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updateDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
       ) `;
@@ -30,6 +30,7 @@ const createGroupsTable = async () => {
             id INT AUTO_INCREMENT PRIMARY KEY,
             group_name VARCHAR(255) ,
             description TEXT,
+            price INT,
             creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         ); `;
 		await db.query(SqlQuery, null, "create", conn);

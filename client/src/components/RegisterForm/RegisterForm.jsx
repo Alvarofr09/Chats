@@ -58,7 +58,7 @@ export default function RegisterForm() {
 			username,
 			email,
 			password,
-			avatarImage: avatar,
+			image: avatar,
 		});
 		const user = {
 			email,

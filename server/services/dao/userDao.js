@@ -66,7 +66,7 @@ userDao.getAllUsers = async (id) => {
 		conn = await db.createConection();
 
 		return await db.query(
-			"SELECT email, username, avatarImage, id FROM users WHERE id != ?",
+			"SELECT email, username, image, id FROM users WHERE id != ?",
 			[id],
 			"select",
 			conn
@@ -97,14 +97,14 @@ userDao.createUser = async (userData) => {
 	}
 };
 
-userDao.setAvatar = async (id, avatarImage) => {
+userDao.setAvatar = async (id, image) => {
 	let conn = null;
 	try {
 		conn = await db.createConection();
 
 		return await db.query(
-			"UPDATE users SET avatarImage = ? WHERE id = ?",
-			[avatarImage, id],
+			"UPDATE users SET image = ? WHERE id = ?",
+			[image, id],
 			"update",
 			conn
 		);
@@ -125,8 +125,8 @@ userDao.updateUser = async (id, userData) => {
 			surname: userData.surname,
 			email: userData.email,
 			password: userData.password ? md5(userData.password) : undefined,
-			isAvatarImageSet: userData.isAvatarImageSet,
-			avatarImage: userData.avatarImage,
+			isImageSet: userData.isImageSet,
+			image: userData.image,
 			updateDate: moment().format("YYYY-MM-DD HH:mm:ss"),
 		};
 
