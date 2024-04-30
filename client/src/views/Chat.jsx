@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { getAllUsersRoute, host } from "../api/APIRoutes";
+import { getAllGroups, getAllUsersRoute, host } from "../api/APIRoutes";
 import Contacts from "../components/Contacts";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -38,14 +38,17 @@ export default function Chat() {
 			setCurrentUser(user);
 			setIsLoaded(true);
 
-			if (!user.isAvatarImageSet) {
-				navigate("/setAvatar");
-				return;
-			}
+			// if (!user.isImageSet) {
+			// 	navigate("/setAvatar");
+			// 	return;
+			// }
 
 			try {
 				const response = await axios.get(`${getAllUsersRoute}/${user.id}`);
+				const response2 = await axios.get(`${getAllGroups}/${user.id}`);
 				setContacts(response.data.users);
+				console.log(response2.data);
+				if (response2.data.groups) setContacts([...contacts, response2.data]);
 			} catch (error) {
 				console.error("Error fetching contacts:", error);
 				toast.error("Error fetching contacts. Please try again.", {
