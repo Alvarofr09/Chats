@@ -3,13 +3,8 @@ import { LoginFormInitialValues } from "../../consts/InitialValues";
 // import { ToastContainer, toast } from "react-toastify";
 import { LoginFormSchema } from "./LoginFormSchema";
 
-import Logo from "../../assets/logo.svg";
-
-import ButtonGroup from "../ui/ButtonGroup";
 import Input from "../ui/Input";
 import { useNavigate } from "react-router-dom";
-// import { useState } from "react";
-// import { useEffect } from "react";
 import { useAuthContext } from "../../context/AuthContext";
 
 export default function LoginForm() {
@@ -23,6 +18,7 @@ export default function LoginForm() {
 	// }, []);
 
 	async function onSubmit(values) {
+		console.log(values);
 		await login(values);
 		navigate("/");
 	}
@@ -33,19 +29,22 @@ export default function LoginForm() {
 				validationSchema={LoginFormSchema}
 				onSubmit={onSubmit}
 			>
-				{() => (
+				{(values, errors, isSubmitting) => (
 					<div className="container-form">
 						<Form className="register-form">
-							<div className="brand ">
-								<img src={Logo} alt="Logo" className="h-20" />
-								<h1 className="titulo">Trademiun</h1>
-							</div>
-
 							<Input placeholder="Email" name="email" type="email" />
 
 							<Input placeholder="Password" name="password" type="password" />
 
-							<ButtonGroup />
+							<button
+								className="btn-primary"
+								type="submit"
+								disabled={isSubmitting}
+							>
+								Login
+							</button>
+
+							{/* <ButtonGroup /> */}
 
 							{/* <span className="titulo">
 								Don´t have an account ?{" "}
