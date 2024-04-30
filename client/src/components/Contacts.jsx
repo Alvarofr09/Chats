@@ -14,9 +14,9 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
 		}
 	}, [currentUser]);
 
-	useEffect(() => {
-		console.log("currentSelected en el useEffect:", currentSelected);
-	}, [currentSelected]);
+	// useEffect(() => {
+	// 	console.log("currentSelected en el useEffect:", currentSelected);
+	// }, [currentSelected]);
 
 	const changeCurrentChat = (index, contact) => {
 		setCurrentSelected(index);
@@ -31,8 +31,7 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
 					style={{ gridTemplateRows: "10% 75% auto" }}
 				>
 					<div className="brand ">
-						<img src={Logo} alt="Logo" className="h-8" />
-						<h1 className="titulo uppercase">Trademiun</h1>
+						<h1 className="titulo  uppercase">Trademiun</h1>
 					</div>
 					<div className="contacts ">
 						{contacts.map((contact, index) => {
@@ -69,7 +68,9 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
 							/>
 						</div>
 						<div className="username">
-							<h3 className="text-xl titulo">{currentUserName}</h3>
+							<h3 className="text-xl text-white uppercase">
+								{currentUserName}
+							</h3>
 						</div>
 						<Logout />
 					</div>
