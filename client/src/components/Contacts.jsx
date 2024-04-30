@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 
-import Logo from "../assets/logo.svg";
 import Logout from "./Logout";
 
 export default function Contacts({ contacts, currentUser, changeChat }) {
@@ -10,7 +9,7 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
 	useEffect(() => {
 		if (currentUser) {
 			setCurrentUserName(currentUser.username);
-			setCurrentUserImage(currentUser.avatarImage);
+			setCurrentUserImage(currentUser.image);
 		}
 	}, [currentUser]);
 
@@ -43,13 +42,15 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
 									key={index}
 									onClick={() => changeCurrentChat(index, contact)}
 								>
-									<div className="avatar">
-										<img
-											className="h-12"
-											src={`data:image/svg+xml;base64,${contact.avatarImage}`}
-											alt="avatar"
-										/>
-									</div>
+									{contact.image && (
+										<div className="avatar">
+											<img
+												className="h-12"
+												src={`data:image/svg+xml;base64,${contact.image}`}
+												alt="avatar"
+											/>
+										</div>
+									)}
 									<div className="username">
 										<h3 className="text-xl text-white bold">
 											{contact.username}
@@ -72,8 +73,8 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
 								{currentUserName}
 							</h3>
 						</div>
-						<Logout />
 					</div>
+					<Logout />
 				</div>
 			)}
 		</>
