@@ -47,7 +47,7 @@ export default function ChatInput({ handleSendMsg }) {
 			</div>
 			<form
 				onSubmit={(e) => sendChat(e)}
-				className="input-container w-[100%] rounded-[2rem] flex content-center gap-8 bg-[#ffffff34]"
+				className="input-container md:px-0 md:py-4 w-[100%] rounded-[2rem] flex content-center gap-8 bg-[#ffffff34]"
 			>
 				<input
 					type="text"
@@ -58,7 +58,7 @@ export default function ChatInput({ handleSendMsg }) {
 				/>
 				<button
 					type="submit"
-					className="submit-btn px-8 py-1 rounded-[2rem] centered bg-[#9a86f3] border-none"
+					className="submit-btn md:py-0 px-8 lg:py-1 rounded-[2rem] centered bg-[#9a86f3] border-none"
 				>
 					<IconSend2 color="#ffffff" size={32} />
 				</button>
