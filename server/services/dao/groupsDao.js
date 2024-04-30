@@ -1,4 +1,5 @@
 const db = require("../db");
+const moment = require("moment");
 
 const groupDao = {};
 
@@ -10,10 +11,11 @@ groupDao.createGroup = async (groupData) => {
 		const groupObj = {
 			group_name: groupData.group_name,
 			description: groupData.description,
+			price: groupData.price,
 			creation_date: moment().format("YYYY-MM-DD HH:mm:ss"),
 		};
 
-		return await db.query("INSERT INTO groups SET ?", groupObj, "insert", conn);
+		return await db.query("INSERT INTO grupos SET ?", groupObj, "insert", conn);
 	} catch (error) {
 		throw new Error(error);
 	} finally {
@@ -32,7 +34,7 @@ groupDao.joinGroup = async (membershipData) => {
 		};
 
 		return await db.query(
-			"INSERT INTO group_membership SET ?",
+			"INSERT INTO grupos_membership SET ?",
 			membershipObj,
 			"insert",
 			conn
@@ -50,11 +52,10 @@ groupDao.getAllGroups = async (user_id) => {
 		conn = await db.createConection();
 
 		const sqlQuery = `
-      		SELECT groups.group_name, groups.description
-      		FROM groups
-      		JOIN group_membership ON groups.id_group = group_membership.id_group
-      		JOIN users ON group_membership.id_user = users.id_user
-     		WHERE users.id_user = ?
+      		SELECT grupos.group_name, grupos.description
+    		FROM grupos
+    		JOIN grupos_membership ON grupos.id = grupos_membership.group_id
+    		WHERE grupos_membership.user_id = ?
     	`;
 
 		return await db.query(sqlQuery, user_id, "select", conn);
