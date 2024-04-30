@@ -15,10 +15,25 @@
 @layer components {
 }
 
+@font-face {
+	font-family: Raleway;
+	src: url(./assets/fonts/Raleway);
+}
+
 * {
 	/* margin: 0;
 	padding: 0; */
 	box-sizing: border-box;
+	font-family: Raleway;
+}
+
+.background {
+	background: rgb(0, 0, 0);
+	background: linear-gradient(
+		to top left,
+		rgba(0, 0, 0, 1) 37%,
+		rgba(0, 193, 255, 1) 100%
+	);
 }
 
 .avatar {
@@ -41,19 +56,19 @@
 }
 
 .titulo {
-	@apply text-white uppercase;
+	@apply text-blue-500 uppercase font-bold text-3xl;
 }
 
 .link {
-	@apply text-purple-600 no-underline font-bold;
+	@apply text-blue-500 no-underline font-bold;
 }
 
 .register-input {
-	@apply h-16 w-[90%] px-6 text-3xl placeholder:text-[#1D1D1B] text-[#1D1D1B] bg-[#D9D9D9] bg-opacity-80 border-2 rounded-[30px] border-none border-opacity-50 outline-none focus:border-purple-400  transition duration-200;
+	@apply h-10 w-full px-6 text-xl placeholder:text-[#1D1D1B] text-[#1D1D1B] bg-[#D9D9D9] bg-opacity-80 border-2 rounded-[30px] border-none border-opacity-50 outline-none focus:border-purple-400  transition duration-200;
 }
 
 .input-error {
-	@apply h-16 w-[90%] px-6 text-3xl placeholder:text-[#1D1D1B] text-[#1D1D1B] bg-[#D9D9D9] bg-opacity-80 border-2 rounded-[30px] border-red-600 border-opacity-50 outline-none focus:border-red-500  transition duration-200;
+	@apply h-10 w-full px-6 text-xl placeholder:text-[#1D1D1B] text-[#1D1D1B] bg-[#D9D9D9] bg-opacity-80 border-2 rounded-[30px] border-red-600 border-opacity-50 outline-none focus:border-red-500  transition duration-200;
 }
 
 .btn-primary {
