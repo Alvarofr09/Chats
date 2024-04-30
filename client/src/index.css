@@ -26,7 +26,7 @@
 }
 
 .container-form {
-	@apply h-screen w-[90%] lg:w-screen flex flex-col justify-center lg:gap-4 lg:bg-gray-900;
+	@apply w-[90%] lg:w-screen flex flex-col justify-center lg:gap-4 lg:bg-gray-900;
 }
 /* my-20 */
 .register-form {
