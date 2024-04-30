@@ -9,6 +9,7 @@ const groupRouter = express.Router();
 
 groupRouter.post("/create-group", createGroup);
 groupRouter.post("/join-group", joinGroup);
-groupRouter.post("/get-groups", getAllGroups);
+
+groupRouter.get("/get-groups/:id", getAllGroups);
 
 module.exports = groupRouter;
