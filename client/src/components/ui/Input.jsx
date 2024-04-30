@@ -27,11 +27,7 @@ export default function Input({ type, ...props }) {
 						className="absolute inset-y-0 right-0 px-3 flex items-center bg-transparent focus:outline-none"
 						onClick={toggleShowPassword}
 					>
-						{showPassword ? (
-							<IconEyeClosed className="translate-x-[-30px]" />
-						) : (
-							<IconEye className="translate-x-[-30px]" />
-						)}
+						{showPassword ? <IconEyeClosed /> : <IconEye />}
 					</button>
 				)}
 			</div>
