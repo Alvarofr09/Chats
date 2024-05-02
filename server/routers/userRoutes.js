@@ -15,6 +15,6 @@ userRouter.post("/setAvatar/:id", setAvatar);
 
 userRouter.get("/allUsers/:id", getAllUsers);
 
-userRouter.get("/:id", getUser);
+userRouter.get("/getUserInfo/:id", getUser);
 
 module.exports = userRouter;
