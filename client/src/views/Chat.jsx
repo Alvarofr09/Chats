@@ -24,7 +24,7 @@ export default function Chat() {
 	useEffect(() => {
 		const fetchData = async () => {
 			if (!localStorage.getItem("token")) {
-				navigate("/login");
+				navigate("/forms");
 				return;
 			}
 
