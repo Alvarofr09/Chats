@@ -18,7 +18,7 @@ export default function UserDetails() {
 	return (
 		<main>
 			<section className="user-details mb-10">
-				<img src={user.image} alt="" className="user_image" />
+				<img src={user.image} alt="" className="user_image avatar-image" />
 				<h2>{user.username}</h2>
 			</section>
 

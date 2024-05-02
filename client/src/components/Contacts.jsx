@@ -46,8 +46,8 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
 									{contact.image && (
 										<div className="avatar">
 											<img
-												className="h-12"
-												src={`data:image/svg+xml;base64,${contact.image}`}
+												className="h-12 avatar-image"
+												src={contact.image}
 												alt="avatar"
 											/>
 										</div>
@@ -67,8 +67,8 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
 					>
 						<div className="avatar h-16">
 							<img
-								className="h-full "
-								src={`data:image/svg+xml;base64,${currentUserImage}`}
+								className="h-full avatar-image"
+								src={currentUserImage}
 								alt="avatar"
 							/>
 						</div>
