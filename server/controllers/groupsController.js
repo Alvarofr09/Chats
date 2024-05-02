@@ -13,6 +13,8 @@ const createGroup = async (req, res, next) => {
 			creation_date: moment().format("YYYY-MM-DD HH:mm:ss"),
 		};
 
+		console.log(groupData);
+
 		const data = await dao.createGroup(groupData);
 
 		if (!data)
@@ -62,7 +64,7 @@ const getAllGroups = async (req, res, next) => {
 		if (groups.length === 0)
 			return res.json({ message: "No estas en ningun grupo", status: true });
 
-		return res.json(groups);
+		return res.json({ groups });
 	} catch (error) {
 		next(error);
 	}
