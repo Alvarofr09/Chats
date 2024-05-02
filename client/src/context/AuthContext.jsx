@@ -36,7 +36,10 @@ export default function AuthContextProvider({ children }) {
 			password,
 		});
 
+		console.log(data);
+
 		if (data.status === false) {
+			console.log("Hola");
 			toast.error(data.msg, toastOptions);
 			setErrorMessage("Error al introducir credenciales");
 		} else {
@@ -49,7 +52,7 @@ export default function AuthContextProvider({ children }) {
 	function logout() {
 		setAuth(null);
 		localStorage.removeItem("token");
-		navigate("/login");
+		navigate("/forms");
 	}
 
 	const value = { auth, login, logout, errorMessage };
