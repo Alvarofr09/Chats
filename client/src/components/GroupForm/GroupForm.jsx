@@ -49,8 +49,6 @@ export default function GroupForm() {
 				toast.success(response.msg, toastOptions);
 				navigate("/");
 			}
-
-			console.log("Bien hecho");
 		}
 	}
 	return (
