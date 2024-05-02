@@ -157,3 +157,7 @@
 .recieved .content {
 	@apply bg-[#9900ff20];
 }
+
+.avatar-image {
+	@apply rounded-full;
+}
