@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 import Logout from "./Logout";
+import { Link } from "react-router-dom";
 
 export default function Contacts({ contacts, currentUser, changeChat }) {
 	const [currentUserName, setCurrentUserName] = useState(undefined);
@@ -60,7 +61,10 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
 							);
 						})}
 					</div>
-					<div className="current-user bg-[#0d0d30] centered gap-8">
+					<Link
+						to={`/user/${currentUser.id}`}
+						className="current-user bg-[#0d0d30] centered gap-8"
+					>
 						<div className="avatar h-16">
 							<img
 								className="h-full "
@@ -73,7 +77,7 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
 								{currentUserName}
 							</h3>
 						</div>
-					</div>
+					</Link>
 					<Logout />
 				</div>
 			)}
