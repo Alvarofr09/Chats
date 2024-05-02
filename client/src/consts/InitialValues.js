@@ -11,3 +11,9 @@ export const LoginFormInitialValues = {
 	email: "",
 	password: "",
 };
+
+export const CreateGroupFormInitialValues = {
+	groupName: "",
+	description: "",
+	price: 0,
+};
