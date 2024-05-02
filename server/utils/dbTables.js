@@ -31,6 +31,7 @@ const createGroupsTable = async () => {
             group_name VARCHAR(255) ,
             description TEXT,
             price INT,
+            image TEXT,
             creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         ); `;
 		await db.query(SqlQuery, null, "create", conn);
