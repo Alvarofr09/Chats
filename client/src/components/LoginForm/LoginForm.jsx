@@ -1,6 +1,6 @@
 import { Formik, Form } from "formik";
 import { LoginFormInitialValues } from "../../consts/InitialValues";
-// import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { LoginFormSchema } from "./LoginFormSchema";
 
 import Input from "../ui/Input";
@@ -8,8 +8,16 @@ import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../context/AuthContext";
 
 export default function LoginForm() {
-	const { login } = useAuthContext();
+	const { login, errorMessage } = useAuthContext();
 	const navigate = useNavigate();
+
+	const toastOptions = {
+		position: "bottom-right",
+		autoClose: 5000,
+		pauseOnHover: true,
+		draggable: true,
+		theme: "dark",
+	};
 
 	// useEffect(() => {
 	// 	if (localStorage.getItem("user")) {
@@ -19,6 +27,8 @@ export default function LoginForm() {
 
 	async function onSubmit(values) {
 		console.log(values);
+		console.log(errorMessage);
+		if (errorMessage) toast.error(errorMessage, toastOptions);
 		await login(values);
 		navigate("/");
 	}
@@ -56,7 +66,7 @@ export default function LoginForm() {
 					</div>
 				)}
 			</Formik>
-			{/* <ToastContainer /> */}
+			<ToastContainer />
 		</>
 	);
 }
