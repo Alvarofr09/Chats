@@ -7,14 +7,15 @@ import Checkbox from "../ui/Checkbox";
 import { useNavigate } from "react-router-dom";
 import { registerRoute, userApi } from "../../api/APIRoutes";
 import { useAuthContext } from "../../context/AuthContext";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { Buffer } from "buffer";
+import { useState } from "react";
+
 import Input from "../ui/Input";
 
+import DefaultImage from "../../assets/images/imagenDefecto.png";
+
 export default function RegisterForm() {
-	const api = "https://api.multiavatar.com/45678945";
-	const [avatar, setAvatar] = useState(undefined);
+	// const api = "https://api.multiavatar.com/45678945";
+	const [avatar, setAvatar] = useState(DefaultImage);
 	const { login } = useAuthContext();
 	const navigate = useNavigate();
 	const toastOptions = {
@@ -31,25 +32,25 @@ export default function RegisterForm() {
 	// 	}
 	// }, []);
 
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const image = await axios.get(
-					`${api}/${Math.round(Math.random() * 1000)}`,
-					{ responseType: "arraybuffer" }
-				);
+	// useEffect(() => {
+	// 	const fetchData = async () => {
+	// 		try {
+	// 			const image = await axios.get(
+	// 				`${api}/${Math.round(Math.random() * 1000)}`,
+	// 				{ responseType: "arraybuffer" }
+	// 			);
 
-				const buffer = Buffer.from(image.data, "binary");
-				const base64 = buffer.toString("base64");
+	// 			const buffer = Buffer.from(image.data, "binary");
+	// 			const base64 = buffer.toString("base64");
 
-				setAvatar(base64);
-			} catch (error) {
-				console.error("Error fetching image:", error);
-			}
-		};
+	// 			setAvatar(base64);
+	// 		} catch (error) {
+	// 			console.error("Error fetching image:", error);
+	// 		}
+	// 	};
 
-		fetchData();
-	}, []);
+	// 	fetchData();
+	// }, []);
 
 	async function onSubmit(values) {
 		console.log(values);
@@ -106,21 +107,11 @@ export default function RegisterForm() {
 							>
 								Register
 							</button>
-							{/* <ButtonGroup /> */}
-							{/* <span className="titulo">
-								Already have an account ?{" "}
-								<Link className="link" to="/login">
-									Login
-								</Link>
-							</span> */}
 						</Form>
 					</div>
 				)}
 			</Formik>
 			<ToastContainer />
-
-			{/* Llama al componente SetAvatar si se ha registrado un usuario */}
-			{/* {localStorage.getItem("user") && <SetAvatar />} */}
 		</>
 	);
 }
