@@ -28,13 +28,14 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
 			{currentUserImage && currentUserName && (
 				<div
 					className="container grid grid-rows-3 overflow-hidden bg-[#080420]"
-					style={{ gridTemplateRows: "10% 75% auto" }}
+					style={{ gridTemplateRows: "10% 65% auto" }}
 				>
 					<div className="brand ">
 						<h1 className="titulo  uppercase">Trademiun</h1>
 					</div>
 					<div className="contacts ">
 						{contacts.map((contact, index) => {
+							console.log(contact);
 							return (
 								<div
 									className={`contact  ${
@@ -52,9 +53,9 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
 											/>
 										</div>
 									)}
-									<div className="username">
-										<h3 className="text-xl text-white bold">
-											{contact.username}
+									<div className="  username">
+										<h3 className=" text-xl text-white bold">
+											{contact.username ? contact.username : contact.group_name}
 										</h3>
 									</div>
 								</div>
@@ -63,7 +64,7 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
 					</div>
 					<Link
 						to={`/user/${currentUser.id}`}
-						className="current-user bg-[#0d0d30] centered gap-8"
+						className="current-user bg-[#0d0d30] centered"
 					>
 						<div className="avatar h-16">
 							<img
@@ -73,7 +74,7 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
 							/>
 						</div>
 						<div className="username">
-							<h3 className="text-xl text-white uppercase">
+							<h3 className=" sm:hidden md:flex text-xl text-white uppercase">
 								{currentUserName}
 							</h3>
 						</div>

@@ -4,7 +4,11 @@ import Messages from "./Messages";
 
 import axios from "axios";
 
-import { getAllMessages, sendMessageRoute } from "../../api/APIRoutes";
+import {
+	getAllGroupMessages,
+	getAllMessages,
+	sendMessageRoute,
+} from "../../api/APIRoutes";
 import { useEffect, useRef, useState } from "react";
 
 export default function ChatContainer({ currentChat, currentUser, socket }) {
@@ -15,10 +19,12 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
 	useEffect(() => {
 		async function fetchData() {
 			if (!currentChat) return;
-			const response = await axios.post(getAllMessages, {
+			console.log(currentUser.id, currentChat.id);
+			const response = await axios.post(getAllGroupMessages, {
 				from: currentUser.id,
 				to: currentChat.id,
 			});
+			console.log(response);
 
 			setMessages(response.data);
 		}
@@ -71,6 +77,7 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
 					className="container pt-4 grid grid-rows-3 gap-1 overflow-hidden"
 					style={{ gridTemplateRows: "10% 78% 12%" }}
 				>
+					{console.log(messages)}
 					<ChatHeader currentChat={currentChat} />
 					<Messages messages={messages} scrollRef={scrollRef} />
 					<ChatInput handleSendMsg={handleSendMsg} />

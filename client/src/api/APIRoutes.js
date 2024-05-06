@@ -10,6 +10,7 @@ export const getUserInfo = `${host}/api/auth/getUserInfo`;
 
 export const sendMessageRoute = `${host}/api/messages/add-message`;
 export const getAllMessages = `${host}/api/messages/getMessages`;
+export const getAllGroupMessages = `${host}/api/messages/getGroupMessages`;
 
 export const createGroupRoute = `${host}/api/groups/create-group`;
 export const joinGroupRoute = `${host}/api/groups/join-group`;
