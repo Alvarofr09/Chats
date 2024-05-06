@@ -4,6 +4,7 @@ export default function Messages({ messages, scrollRef }) {
 	return (
 		<div className="chat-messages scrollbar-custom py-4 px-8 flex flex-col gap-4 overflow-auto">
 			{messages.map((message) => {
+				console.log(message);
 				return (
 					<div ref={scrollRef} key={uuidv4()}>
 						<div
