@@ -12,6 +12,7 @@ groupDao.createGroup = async (groupData) => {
 			group_name: groupData.group_name,
 			description: groupData.description,
 			price: groupData.price,
+			Image: groupData.image,
 			creation_date: moment().format("YYYY-MM-DD HH:mm:ss"),
 		};
 
@@ -52,7 +53,7 @@ groupDao.getAllGroups = async (user_id) => {
 		conn = await db.createConection();
 
 		const sqlQuery = `
-      		SELECT grupos.group_name, grupos.description, grupos.image
+      		SELECT grupos.id, grupos.group_name, grupos.description, grupos.image
     		FROM grupos
     		JOIN grupos_membership ON grupos.id = grupos_membership.group_id
     		WHERE grupos_membership.user_id = ?
