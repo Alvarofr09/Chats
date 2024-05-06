@@ -61,11 +61,11 @@ export default function Chat() {
 	}, [navigate]);
 
 	useEffect(() => {
-		if (currentUser) {
+		if (currentChat) {
 			socket.current = io(host);
-			socket.current.emit("add-user", currentUser.id);
+			socket.current.emit("add-user", currentChat.id);
 		}
-	}, [currentUser]);
+	}, [currentChat]);
 
 	const handleChatChange = (chat) => {
 		setCurrentChat(chat);
