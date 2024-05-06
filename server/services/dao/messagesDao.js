@@ -32,9 +32,11 @@ messageDao.getSendedMessages = async (from, to) => {
 	let conn = null;
 	try {
 		conn = await db.createConection();
+		console.log("from:", from);
+		console.log("to:", to);
 
 		return await db.query(
-			"SELECT * FROM messages WHERE group_id = ? AND receiver_id = ?",
+			"SELECT * FROM messages WHERE sender_id = ? AND group_id = ?",
 			[from, to],
 			"select",
 			conn
@@ -52,7 +54,7 @@ messageDao.getRecievedMessages = async (from, to) => {
 		conn = await db.createConection();
 
 		return await db.query(
-			"SELECT * FROM messages WHERE group_id = ? AND receiver_id = ?",
+			"SELECT * FROM messages WHERE sender_id = ? AND group_id = ?",
 			[to, from],
 			"select",
 			conn
