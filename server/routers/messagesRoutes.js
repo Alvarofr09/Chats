@@ -2,7 +2,6 @@ const express = require("express");
 const {
 	addMessage,
 	getAllMessages,
-	getAllGroupMessages,
 	getGroupMessages,
 } = require("../controllers/messagesController");
 
