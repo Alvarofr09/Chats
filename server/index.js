@@ -57,18 +57,16 @@ const io = socket(server, {
 	},
 });
 
-global.onlineUsers = new Map();
-
 io.on("connection", (socket) => {
-	global.chatSocket = socket;
-	socket.on("add-user", (userId) => {
-		onlineUsers.set(userId, socket.id);
-	});
+	const idHandShake = socket.id;
 
-	socket.on("send-msg", (data) => {
-		const sendUserSocket = onlineUsers.get(data.to);
-		if (sendUserSocket) {
-			socket.to(sendUserSocket).emit("msg-recieve", data.message);
-		}
+	socket.on("add-user", (group_id) => {
+		socket.join(group_id);
+		console.log(`Hola dispositivo: ${idHandShake} se unio a ---> ${group_id}`);
+
+		socket.on("send-msg", (data) => {
+			console.log("Mensaje", data);
+			socket.to(group_id).emit("msg-recieve", data.message);
+		});
 	});
 });
