@@ -15,7 +15,6 @@ export default function Chat() {
 	const socket = useRef();
 	const navigate = useNavigate();
 	const [contacts, setContacts] = useState([]);
-	const [groups, setGroups] = useState([]);
 	const [currentUser, setCurrentUser] = useState(undefined);
 	const [currentChat, setCurrentChat] = useState(undefined);
 	const [isLoaded, setIsLoaded] = useState(false);
@@ -46,9 +45,12 @@ export default function Chat() {
 
 			try {
 				const response = await axios.get(`${getAllUsersRoute}/${user.id}`);
+				const users = response.data.users;
 				const response2 = await axios.get(`${getAllGroups}/${user.id}`);
-				setContacts(response.data.users);
-				console.log(response.data.users);
+				const groups = response2.data.groups;
+				setContacts(users);
+				console.log(users);
+				console.log(groups);
 				console.log(response2.data.groups);
 				if (response2.data.groups > 0) {
 					setContacts([...contacts, response2.data.groups]);
