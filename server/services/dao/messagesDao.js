@@ -66,4 +66,22 @@ messageDao.getRecievedMessages = async (from, to) => {
 	}
 };
 
+messageDao.prueba = async (to) => {
+	let conn = null;
+	try {
+		conn = await db.createConection();
+
+		return await db.query(
+			"SELECT * FROM messages WHERE group_id = ?",
+			[to],
+			"select",
+			conn
+		);
+	} catch (error) {
+		throw new Error(error);
+	} finally {
+		conn && (await conn.end());
+	}
+};
+
 module.exports = messageDao;
