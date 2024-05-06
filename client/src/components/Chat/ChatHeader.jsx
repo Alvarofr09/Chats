@@ -7,7 +7,7 @@ export default function ChatHeader({ currentChat }) {
 				</div>
 				<div className="username">
 					<h3 className="text-white text-xl font-bold">
-						{currentChat.username}
+						{currentChat.group_name}
 					</h3>
 				</div>
 			</div>
