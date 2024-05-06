@@ -55,11 +55,15 @@ const getAllGroupMessages = async (req, res, next) => {
 
 		if (!from || !to) return res.status(400).send("Error en el body");
 
-		const sendedMessages = await dao.getSendedMessages(from, to);
-		console.log(sendedMessages);
-		const receivedMessages = await dao.getRecievedMessages(from, to);
-		console.log(receivedMessages);
-		let messages = [...sendedMessages, ...receivedMessages];
+		let messages = [];
+		if (from === to) {
+			messages = await dao.getSendedMessages(from, to);
+		} else {
+			const sendedMessages = await dao.getSendedMessages(from, to);
+			const receivedMessages = await dao.getRecievedMessages(from, to);
+			messages = [...sendedMessages, ...receivedMessages];
+		}
+
 		messages.sort((a, b) => new Date(a.date) - new Date(b.date));
 		const projectMessages = messages.map((message) => {
 			return {
@@ -74,4 +78,32 @@ const getAllGroupMessages = async (req, res, next) => {
 	}
 };
 
-module.exports = { addMessage, getAllMessages, getAllGroupMessages };
+const getGroupMessages = async (req, res, next) => {
+	try {
+		const { from, to } = req.body;
+
+		if (!from || !to) return res.status(400).send("Error en el body");
+
+		let messages = [];
+		messages = await dao.prueba(to);
+
+		messages.sort((a, b) => new Date(a.date) - new Date(b.date));
+		const projectMessages = messages.map((message) => {
+			return {
+				fromSelf: message.sender_id === from,
+				message: message.text,
+			};
+		});
+
+		return res.json(projectMessages);
+	} catch (error) {
+		next(error);
+	}
+};
+
+module.exports = {
+	addMessage,
+	getAllMessages,
+	getAllGroupMessages,
+	getGroupMessages,
+};
