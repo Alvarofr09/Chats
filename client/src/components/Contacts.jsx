@@ -35,6 +35,7 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
 					</div>
 					<div className="contacts ">
 						{contacts.map((contact, index) => {
+							console.log(contact);
 							return (
 								<div
 									className={`contact  ${
@@ -54,7 +55,7 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
 									)}
 									<div className="  username">
 										<h3 className=" text-xl text-white bold">
-											{contact.username}
+											{contact.username ? contact.username : contact.group_name}
 										</h3>
 									</div>
 								</div>
