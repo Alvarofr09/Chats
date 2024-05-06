@@ -3,6 +3,7 @@ const {
 	addMessage,
 	getAllMessages,
 	getAllGroupMessages,
+	getGroupMessages,
 } = require("../controllers/messagesController");
 
 const messageRouter = express.Router();
@@ -10,6 +11,7 @@ const messageRouter = express.Router();
 messageRouter.post("/add-message", addMessage);
 
 messageRouter.post("/getMessages", getAllMessages);
-messageRouter.post("/getGroupMessages", getAllGroupMessages);
+messageRouter.post("/getGroupMessages", getGroupMessages);
+messageRouter.post("/prueba", getGroupMessages);
 
 module.exports = messageRouter;
