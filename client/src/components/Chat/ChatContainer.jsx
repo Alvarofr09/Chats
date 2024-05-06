@@ -19,10 +19,12 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
 	useEffect(() => {
 		async function fetchData() {
 			if (!currentChat) return;
+			console.log(currentUser.id, currentChat.id);
 			const response = await axios.post(getAllGroupMessages, {
 				from: currentUser.id,
 				to: currentChat.id,
 			});
+			console.log(response);
 
 			setMessages(response.data);
 		}
