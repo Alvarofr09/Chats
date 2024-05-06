@@ -6,7 +6,7 @@ import axios from "axios";
 
 import {
 	getAllGroupMessages,
-	getAllMessages,
+	// getAllMessages,
 	sendMessageRoute,
 } from "../../api/APIRoutes";
 import { useEffect, useRef, useState } from "react";
@@ -19,12 +19,10 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
 	useEffect(() => {
 		async function fetchData() {
 			if (!currentChat) return;
-			console.log(currentUser.id, currentChat.id);
 			const response = await axios.post(getAllGroupMessages, {
 				from: currentUser.id,
 				to: currentChat.id,
 			});
-			console.log(response);
 
 			setMessages(response.data);
 		}
@@ -36,6 +34,7 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
 	useEffect(() => {
 		if (socket.current) {
 			socket.current.on("msg-recieve", (msg) => {
+				console.log(msg);
 				setArrivalMessage({ fromSelf: false, message: msg });
 			});
 		}
