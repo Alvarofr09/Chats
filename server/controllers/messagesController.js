@@ -85,7 +85,7 @@ const getGroupMessages = async (req, res, next) => {
 		if (!from || !to) return res.status(400).send("Error en el body");
 
 		let messages = [];
-		messages = await dao.prueba(to);
+		messages = await dao.getMessages(to);
 
 		messages.sort((a, b) => new Date(a.date) - new Date(b.date));
 		const projectMessages = messages.map((message) => {

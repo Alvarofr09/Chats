@@ -66,7 +66,7 @@ messageDao.getRecievedMessages = async (from, to) => {
 	}
 };
 
-messageDao.prueba = async (to) => {
+messageDao.getMessages = async (to) => {
 	let conn = null;
 	try {
 		conn = await db.createConection();

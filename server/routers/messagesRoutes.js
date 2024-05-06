@@ -12,6 +12,5 @@ messageRouter.post("/add-message", addMessage);
 
 messageRouter.post("/getMessages", getAllMessages);
 messageRouter.post("/getGroupMessages", getGroupMessages);
-messageRouter.post("/prueba", getGroupMessages);
 
 module.exports = messageRouter;
