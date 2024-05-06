@@ -15,7 +15,6 @@ export default function Chat() {
 	const socket = useRef();
 	const navigate = useNavigate();
 	const [contacts, setContacts] = useState([]);
-	const [groups, setGroups] = useState([]);
 	const [currentUser, setCurrentUser] = useState(undefined);
 	const [currentChat, setCurrentChat] = useState(undefined);
 	const [isLoaded, setIsLoaded] = useState(false);
@@ -39,21 +38,15 @@ export default function Chat() {
 			setCurrentUser(user);
 			setIsLoaded(true);
 
-			// if (!user.isImageSet) {
-			// 	navigate("/setAvatar");
-			// 	return;
-			// }
-
 			try {
-				const response = await axios.get(`${getAllUsersRoute}/${user.id}`);
+				// const response = await axios.get(`${getAllUsersRoute}/${user.id}`);
 				const response2 = await axios.get(`${getAllGroups}/${user.id}`);
-				setContacts(response.data.users);
-				console.log(response.data.users);
+				// setContacts(response.data.users);
+				// console.log(response.data.users);
 				console.log(response2.data.groups);
-				if (response2.data.groups > 0) {
-					setContacts([...contacts, response2.data.groups]);
+				if (response2.data.groups.length > 0) {
+					setContacts(response2.data.groups);
 				}
-				console.log(contacts);
 			} catch (error) {
 				console.error("Error fetching contacts:", error);
 				toast.error("Error fetching contacts. Please try again.", {
