@@ -27,7 +27,7 @@ export default function ChatInput({ handleSendMsg }) {
 
 	return (
 		<div
-			className="container  grid grid-cols-2 items-center bg-[#080420] px-8 py-0 pb-[0.3rem]"
+			className="container  grid grid-cols-2 items-center bg-[#000000] px-8 py-0 pb-[0.3rem]"
 			style={{
 				gridTemplateColumns: "5% 95%",
 			}}
@@ -47,20 +47,20 @@ export default function ChatInput({ handleSendMsg }) {
 			</div>
 			<form
 				onSubmit={(e) => sendChat(e)}
-				className="input-container md:px-0 md:py-4 w-[100%] rounded-[2rem] flex content-center gap-8 bg-[#ffffff34]"
+				className="input-container  w-[100%] rounded-[2rem] flex content-center gap-8 bg-[#D9D9D9]"
 			>
 				<input
 					type="text"
 					value={message}
 					onChange={(e) => setMessage(e.target.value)}
 					placeholder="Type your message here"
-					className="w-[90%]  bg-transparent border-none pl-4 text-xl text-white selection:bg-[#9186f3] focus:outline-none"
+					className="w-[90%]  bg-transparent border-none pl-4 text-xl text-[#585858] focus:outline-none"
 				/>
 				<button
 					type="submit"
-					className="submit-btn md:py-0 px-8 lg:py-1 rounded-[2rem] centered bg-[#9a86f3] border-none"
+					className="submit-btn md:py-0 px-8 lg:py-1 rounded-[2rem] centered  border-none"
 				>
-					<IconSend2 color="#ffffff" size={32} />
+					<IconSend2 color="#585858" size={32} />
 				</button>
 			</form>
 		</div>
