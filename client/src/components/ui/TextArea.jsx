@@ -7,9 +7,7 @@ export default function TextArea({ props }) {
 			<textarea
 				{...props}
 				{...field}
-				className={
-					meta.touched && meta.error ? "input-error" : "register-input"
-				}
+				className={meta.touched && meta.error ? "input-error" : "input"}
 				cols="4"
 				rows="40"
 			>
