@@ -67,4 +67,24 @@ groupDao.getAllGroups = async (user_id) => {
 	}
 };
 
+groupDao.getFirstUser = async (group_id) => {
+	let conn = null;
+	try {
+		conn = await db.createConection();
+
+		const sqlQuery = `
+      		SELECT user_id
+    		FROM grupos_membership
+    		WHERE group_id = ?
+			limit 1
+    	`;
+
+		return await db.query(sqlQuery, group_id, "select", conn);
+	} catch (error) {
+		throw new Error(error);
+	} finally {
+		conn && (await conn.end());
+	}
+};
+
 module.exports = groupDao;
