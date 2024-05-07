@@ -8,9 +8,7 @@ export default function InputPrueba({ label, ...props }) {
 				<input
 					{...props}
 					{...field}
-					className={
-						meta.touched && meta.error ? "input-error" : "register-input"
-					}
+					className={meta.touched && meta.error ? "input-error" : "input"}
 				/>
 				<span
 					className="text-3xl text-white text-opacity-80 absolute left-0 top-4
