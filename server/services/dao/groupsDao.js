@@ -53,7 +53,7 @@ groupDao.getAllGroups = async (user_id) => {
 		conn = await db.createConection();
 
 		const sqlQuery = `
-      		SELECT grupos.id, grupos.group_name, grupos.description, grupos.image
+      		SELECT grupos.id, grupos.group_name, grupos.description, grupos.image,grupos.participantes
     		FROM grupos
     		JOIN grupos_membership ON grupos.id = grupos_membership.group_id
     		WHERE grupos_membership.user_id = ?
