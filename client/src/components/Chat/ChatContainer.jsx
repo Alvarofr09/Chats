@@ -4,8 +4,11 @@ import Messages from "./Messages";
 
 import axios from "axios";
 
+import { jwtDecode } from "jwt-decode";
+
 import {
 	getAllGroupMessages,
+	isAdmin,
 	// getAllMessages,
 	sendMessageRoute,
 } from "../../api/APIRoutes";
@@ -13,8 +16,28 @@ import { useEffect, useRef, useState } from "react";
 
 export default function ChatContainer({ currentChat, currentUser, socket }) {
 	const [messages, setMessages] = useState([]);
+	const [isAdministrador, setIsAdministrador] = useState(false);
 	const [arrivalMessage, setArrivalMessage] = useState(null);
 	const scrollRef = useRef();
+
+	useEffect(() => {
+		async function fetchData() {
+			const token = localStorage.getItem("token");
+			// console.log(token);
+
+			const user = jwtDecode(token);
+
+			const { data } = await axios.post(`${isAdmin}/${user.id}`, {
+				group_id: currentChat.id,
+			});
+
+			if (data.isAdmin) {
+				setIsAdministrador(true);
+			}
+		}
+
+		fetchData();
+	}, [currentChat]);
 
 	useEffect(() => {
 		async function fetchData() {
@@ -34,7 +57,6 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
 	useEffect(() => {
 		if (socket.current) {
 			socket.current.on("msg-recieve", (msg) => {
-				console.log(msg);
 				setArrivalMessage({ fromSelf: false, message: msg });
 			});
 		}
@@ -73,13 +95,12 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
 		<>
 			{currentChat && (
 				<div
-					className="container pt-4 grid grid-rows-3 gap-1 overflow-hidden"
-					style={{ gridTemplateRows: "10% 78% 12%" }}
+					className="container grid grid-rows-3 gap-1 overflow-hidden"
+					style={{ gridTemplateRows: "11% 70% auto" }}
 				>
-					{console.log(messages)}
 					<ChatHeader currentChat={currentChat} />
 					<Messages messages={messages} scrollRef={scrollRef} />
-					<ChatInput handleSendMsg={handleSendMsg} />
+					{isAdministrador && <ChatInput handleSendMsg={handleSendMsg} />}
 				</div>
 			)}
 		</>
