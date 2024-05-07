@@ -57,12 +57,12 @@
 }
 
 .contacts {
-	@apply flex flex-col items-center overflow-auto gap-3 scrollbar-custom;
+	@apply flex flex-col items-center overflow-auto scrollbar-custom;
 }
 
 .contact {
-	@apply bg-[#ffffff39] min-h-[5rem] w-[90%] cursor-pointer rounded-[0.2rem] 
-	p-[0.4rem] items-center flex sm:flex-col md:flex-row transition duration-200 ease-in-out;
+	@apply bg-[#000000] min-h-[5rem] w-[90%] cursor-pointer rounded-[0.2rem] 
+	p-[0.4rem] items-center flex sm:flex-col md:flex-row transition duration-200 ease-in-out border border-[#2B2A29];
 }
 
 .centered {
@@ -113,7 +113,7 @@
 }
 
 .selected-contact {
-	@apply bg-[#9186f3];
+	@apply bg-[#2B2A29];
 }
 
 .titulo {
