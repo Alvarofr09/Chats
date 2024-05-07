@@ -32,6 +32,7 @@ const createGroupsTable = async () => {
             description TEXT,
             price INT,
             image TEXT,
+            participantes INT DEFAULT 0,
             creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         ); `;
 		await db.query(SqlQuery, null, "create", conn);
@@ -80,9 +81,33 @@ const createMembershipTable = async () => {
 	}
 };
 
+const createIncrementParticipantsTrigger = async () => {
+	let conn = await db.createConection();
+	try {
+		const SqlQuery = `
+      CREATE TRIGGER IF NOT EXISTS increment_participants_trigger
+      AFTER INSERT ON grupos_membership
+      FOR EACH ROW
+      BEGIN
+          DECLARE group_id INT;
+
+          SET group_id = NEW.group_id;
+
+          UPDATE grupos
+          SET participantes = participantes + 1
+          WHERE id = group_id;
+      END
+    `;
+		await db.query(SqlQuery, null, "create", conn);
+	} finally {
+		await conn.end();
+	}
+};
+
 module.exports = {
 	createUsersTable,
 	createGroupsTable,
 	createMessagesTable,
 	createMembershipTable,
+	createIncrementParticipantsTrigger,
 };

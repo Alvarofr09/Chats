@@ -12,6 +12,7 @@ const {
 	createMessagesTable,
 	createGroupsTable,
 	createMembershipTable,
+	createIncrementParticipantsTrigger,
 } = require("./utils/dbTables");
 
 const app = express();
@@ -39,6 +40,7 @@ createUsersTable();
 createGroupsTable();
 createMessagesTable();
 createMembershipTable();
+createIncrementParticipantsTrigger();
 
 app.use("/api/auth", userRouter);
 app.use("/api/messages", messageRouter);
