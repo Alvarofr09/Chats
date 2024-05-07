@@ -10,9 +10,9 @@ const createUsersTable = async () => {
         email VARCHAR(255), 
         password VARCHAR(255),
         userRole BOOLEAN DEFAULT FALSE,
-        superAdmin BOOLEAN DEFAULT FALSE,
         isImageSet BOOLEAN DEFAULT FALSE,
         image TEXT,
+        seguidores INT DEFAULT 0,
         registerDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updateDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
       ) `;
@@ -70,6 +70,7 @@ const createMembershipTable = async () => {
         id INT AUTO_INCREMENT PRIMARY KEY,
         group_id INT,
         user_id INT,
+        user_role BOOLEAN DEFAULT FALSE,
         FOREIGN KEY (group_id) REFERENCES grupos(id),
         FOREIGN KEY (user_id) REFERENCES users(id)
       ); `;
