@@ -70,4 +70,30 @@ const getAllGroups = async (req, res, next) => {
 	}
 };
 
-module.exports = { createGroup, joinGroup, getAllGroups };
+const isAdmin = async (req, res, next) => {
+	try {
+		const user_id = req.params.id;
+		const { group_id } = req.body;
+
+		const firstUser = await dao.getFirstUser(group_id);
+
+		if (firstUser.length === 0)
+			return res.json({
+				message: "No se ha encontrado el usuario",
+				status: true,
+			});
+
+		console.log("user id", user_id);
+		console.log("id de la consulta", firstUser[0].user_id);
+		const isFirstUser = firstUser[0].user_id == user_id;
+		console.log("Es el primero?", isFirstUser);
+		const isAdmin = isFirstUser ? true : false;
+
+		return res.json({
+			isAdmin: isAdmin,
+		});
+	} catch (error) {
+		next(error);
+	}
+};
+module.exports = { createGroup, joinGroup, getAllGroups, isAdmin };
