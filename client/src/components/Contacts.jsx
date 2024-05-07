@@ -61,6 +61,13 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
 								</div>
 							);
 						})}
+
+						<p className=" mt-8 text-center text-xs text-[#9C9999]">
+							¿No tienes más chats? Buscalos{" "}
+							<Link to="/" className="text-blue-500 underline">
+								AQUI
+							</Link>
+						</p>
 					</div>
 					<Link
 						to={`/user/${currentUser.id}`}
