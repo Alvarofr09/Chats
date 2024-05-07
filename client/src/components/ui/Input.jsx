@@ -17,9 +17,7 @@ export default function Input({ type, ...props }) {
 					{...props}
 					{...field}
 					type={showPassword ? "text" : type} // Cambia dinámicamente el tipo de entrada
-					className={
-						meta.touched && meta.error ? "input-error" : "register-input"
-					}
+					className={meta.touched && meta.error ? "input-error" : "input"}
 				/>
 				{type === "password" && (
 					<button
