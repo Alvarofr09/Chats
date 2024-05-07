@@ -98,11 +98,11 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
 			{currentChat && (
 				<div
 					className="container grid grid-rows-3 overflow-hidden"
-					style={{ gridTemplateRows: "11% 70% auto" }}
+					style={{ gridTemplateRows: "11% 75% auto" }}
 				>
 					<ChatHeader currentChat={currentChat} />
 					<Messages messages={messages} scrollRef={scrollRef} />
-					{isAdministrador && <ChatInput handleSendMsg={handleSendMsg} />}
+					<ChatInput handleSendMsg={handleSendMsg} isAdmin={isAdministrador} />
 				</div>
 			)}
 		</>
