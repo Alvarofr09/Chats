@@ -1,3 +1,6 @@
+import { IconMessage } from "@tabler/icons-react";
+import { IconDotsVertical } from "@tabler/icons-react";
+
 export default function ChatHeader({ currentChat }) {
 	return (
 		<div className="chat-header bg-[#2B2A29] flex justify-between items-center px-8 py-0">
@@ -13,6 +16,14 @@ export default function ChatHeader({ currentChat }) {
 					<span className="text-[#9C9999]">
 						{currentChat.participantes} Participantes
 					</span>
+				</div>
+			</div>
+			<div className="options centered flex-row gap-8">
+				<div className="info">
+					<IconDotsVertical color="#ffffff" />
+				</div>
+				<div className="subChat">
+					<IconMessage color="#ffffff" />
 				</div>
 			</div>
 		</div>
