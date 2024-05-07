@@ -101,7 +101,7 @@
 }
 
 .recieved .content {
-	@apply bg-[#9900ff20];
+	@apply bg-[#D9D9D9];
 }
 
 .sended {
@@ -109,7 +109,7 @@
 }
 
 .sended .content {
-	@apply bg-[#4f40ff21];
+	@apply bg-blue-500;
 }
 
 .selected-contact {
