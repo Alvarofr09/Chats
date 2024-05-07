@@ -33,6 +33,8 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
 
 			if (data.isAdmin) {
 				setIsAdministrador(true);
+			} else {
+				setIsAdministrador(false);
 			}
 		}
 
@@ -95,7 +97,7 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
 		<>
 			{currentChat && (
 				<div
-					className="container grid grid-rows-3 gap-1 overflow-hidden"
+					className="container grid grid-rows-3 overflow-hidden"
 					style={{ gridTemplateRows: "11% 70% auto" }}
 				>
 					<ChatHeader currentChat={currentChat} />
