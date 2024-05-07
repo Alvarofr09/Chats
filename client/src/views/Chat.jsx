@@ -37,13 +37,10 @@ export default function Chat() {
 			setIsLoaded(true);
 
 			try {
-				// const response = await axios.get(`${getAllUsersRoute}/${user.id}`);
-				const response2 = await axios.get(`${getAllGroups}/${user.id}`);
-				// setContacts(response.data.users);
-				// console.log(response.data.users);
-				console.log(response2.data.groups);
-				if (response2.data.groups.length > 0) {
-					setContacts(response2.data.groups);
+				const response = await axios.get(`${getAllGroups}/${user.id}`);
+				console.log(response.data.groups);
+				if (response.data.groups.length > 0) {
+					setContacts(response.data.groups);
 				}
 			} catch (error) {
 				console.error("Error fetching contacts:", error);
