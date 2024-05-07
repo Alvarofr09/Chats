@@ -17,3 +17,9 @@ export const CreateGroupFormInitialValues = {
 	description: "",
 	price: 0,
 };
+
+export const SignalFormInitialValues = {
+	moneda: "",
+	buyPrice: 0,
+	sellPrice: 0,
+};
