@@ -83,7 +83,7 @@ export default function RegisterForm() {
 			>
 				{(values, errors, isSubmitting) => (
 					<div className="container-form">
-						<Form className="register-form">
+						<Form className="form">
 							<Input placeholder="Username" name="username" type="text" />
 
 							<Input placeholder="Email" name="email" type="email" />

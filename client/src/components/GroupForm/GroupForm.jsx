@@ -60,7 +60,7 @@ export default function GroupForm() {
 			>
 				{(values, errors, isSubmitting) => (
 					<div className="container-form">
-						<Form className="register-form">
+						<Form className="form">
 							<Input
 								placeholder="Nombre del Grupo"
 								name="groupName"

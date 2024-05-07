@@ -41,7 +41,7 @@ export default function LoginForm() {
 			>
 				{(values, errors, isSubmitting) => (
 					<div className="container-form">
-						<Form className="register-form">
+						<Form className="form">
 							<Input placeholder="Email" name="email" type="email" />
 
 							<Input placeholder="Password" name="password" type="password" />
