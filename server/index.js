@@ -13,7 +13,9 @@ const {
 	createGroupsTable,
 	createMembershipTable,
 	createIncrementParticipantsTrigger,
+	createSignalsTable,
 } = require("./utils/dbTables");
+const signalRoute = require("./routers/signalsRoutes");
 
 const app = express();
 
@@ -39,12 +41,14 @@ app.use(express.urlencoded({ extended: true }));
 createUsersTable();
 createGroupsTable();
 createMessagesTable();
+createSignalsTable();
 createMembershipTable();
 createIncrementParticipantsTrigger();
 
 app.use("/api/auth", userRouter);
 app.use("/api/messages", messageRouter);
 app.use("/api/groups", groupRouter);
+app.use("/api/signals", signalRoute);
 
 // const conn = db.createConection();
 
