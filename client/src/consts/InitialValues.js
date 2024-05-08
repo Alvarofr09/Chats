@@ -19,7 +19,11 @@ export const CreateGroupFormInitialValues = {
 };
 
 export const SignalFormInitialValues = {
-	moneda: "",
-	buyPrice: 0,
-	sellPrice: 0,
+	signalImage: "",
+	description: "",
+	coin: "",
+	entrada: "",
+	salida: "",
+	tp: "",
+	porcentaje: "",
 };
