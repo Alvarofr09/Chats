@@ -7,7 +7,12 @@ import { useState } from "react";
 import Modal from "../Modal";
 import SignalForm from "../SignalForm/SignalForm";
 
-export default function ChatInput({ handleSendMsg, isAdmin }) {
+export default function ChatInput({
+	handleSendMsg,
+	isAdmin,
+	currentUser,
+	currentChat,
+}) {
 	const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 	const [showModal, setShowModal] = useState(false);
 	const [message, setMessage] = useState("");
@@ -83,7 +88,7 @@ export default function ChatInput({ handleSendMsg, isAdmin }) {
 
 					{showModal && (
 						<Modal closeModal={closeModal}>
-							<SignalForm />
+							<SignalForm currentUser={currentUser} currentChat={currentChat} />
 						</Modal>
 					)}
 				</>
@@ -97,37 +102,4 @@ export default function ChatInput({ handleSendMsg, isAdmin }) {
 			)}
 		</div>
 	);
-}
-
-{
-	/* <>
-	<select name="" id="">
-		<option value="BTC">BTC</option>
-		<option value="ETH">ETH</option>
-		<option value="Doge">Doge</option>
-	</select>
-
-	<input
-		type="Number"
-		value={signal.buyPrice}
-		onChange={(e) => setMessage(e.target.value)}
-		placeholder="Type the price to buy"
-		className="w-[90%]  bg-transparent border-none pl-4 text-xl text-[#585858] focus:outline-none"
-	/>
-
-	<input
-		type="Number"
-		value={signal.sellPrice}
-		onChange={(e) => setMessage(e.target.value)}
-		placeholder="Type the price to sell"
-		className="w-[90%]  bg-transparent border-none pl-4 text-xl text-[#585858] focus:outline-none"
-	/>
-
-	<button
-		type="submit"
-		className="submit-btn md:py-0 px-8 lg:py-1 rounded-[2rem] centered  border-none"
-	>
-		Enviar
-	</button>
-</>; */
 }

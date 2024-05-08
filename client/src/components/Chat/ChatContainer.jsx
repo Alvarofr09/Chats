@@ -102,7 +102,12 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
 				>
 					<ChatHeader currentChat={currentChat} />
 					<Messages messages={messages} scrollRef={scrollRef} />
-					<ChatInput handleSendMsg={handleSendMsg} isAdmin={isAdministrador} />
+					<ChatInput
+						handleSendMsg={handleSendMsg}
+						isAdmin={isAdministrador}
+						currentUser={currentUser}
+						currentChat={currentChat}
+					/>
 				</div>
 			)}
 		</>
