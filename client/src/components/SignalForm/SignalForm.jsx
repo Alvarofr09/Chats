@@ -5,17 +5,26 @@ import { SignalFormSchema } from "./SignalFormSchema";
 import Input from "../ui/Input";
 import Select from "../ui/Select";
 import Image from "../ui/Image";
+import { sendSignalRoute, userApi } from "../../api/APIRoutes";
 
-export default function SignalForm() {
+export default function SignalForm({ currentUser, currentChat }) {
 	async function onSubmit(values) {
 		console.log(values);
-		// const { username, email, password } = values;
-		// const { data } = await userApi.post(registerRoute, {
-		// 	username,
-		// 	email,
-		// 	password,
-		// 	image: avatar,
-		// });
+		const { description, coin, entrada, salida, tp, porcentaje } = values;
+		const { data } = await userApi.post(sendSignalRoute, {
+			from: currentUser.id,
+			to: currentChat.id,
+			description,
+			moneda: coin,
+			entrada,
+			salida,
+			tp,
+			porcentaje,
+		});
+
+		if (data.status) {
+			alert(data.message);
+		}
 	}
 	return (
 		<>
@@ -27,7 +36,7 @@ export default function SignalForm() {
 				{(values, errors, isSubmitting) => (
 					<div className="">
 						<Form className="form">
-							<Image />
+							<Image name="signalImage" />
 
 							<Input
 								placeholder="Signal Description"
