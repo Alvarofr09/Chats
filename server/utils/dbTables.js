@@ -48,13 +48,37 @@ const createMessagesTable = async () => {
       CREATE TABLE IF NOT EXISTS messages (
         id INT AUTO_INCREMENT,
         sender_id INT,
-        receiver_id INT,
         group_id INT,
         text TEXT,
         date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY (id),
         FOREIGN KEY (sender_id) REFERENCES users(id),
-        FOREIGN KEY (receiver_id) REFERENCES users(id),
+        FOREIGN KEY (group_id) REFERENCES grupos(id)
+      ) `;
+		await db.query(SqlQuery, null, "create", conn);
+	} finally {
+		await conn.end();
+	}
+};
+
+const createSignalsTable = async () => {
+	let conn = await db.createConection();
+	try {
+		const SqlQuery = `
+      CREATE TABLE IF NOT EXISTS signals (
+        id INT AUTO_INCREMENT,
+        sender_id INT,
+        group_id INT,
+        image TEXT,
+        description TEXT,
+        moneda VARCHAR(255),
+        entrada INT,
+        salida INT,
+        tp INT,
+        porcentaje INT,
+        date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        PRIMARY KEY (id),
+        FOREIGN KEY (sender_id) REFERENCES users(id),
         FOREIGN KEY (group_id) REFERENCES grupos(id)
       ) `;
 		await db.query(SqlQuery, null, "create", conn);
@@ -108,6 +132,7 @@ module.exports = {
 	createUsersTable,
 	createGroupsTable,
 	createMessagesTable,
+	createSignalsTable,
 	createMembershipTable,
 	createIncrementParticipantsTrigger,
 };
