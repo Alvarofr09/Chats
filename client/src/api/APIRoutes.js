@@ -17,7 +17,7 @@ export const joinGroupRoute = `${host}/api/groups/join-group`;
 export const getAllGroups = `${host}/api/groups/get-groups`;
 export const isAdmin = `${host}/api/groups/is-admin`;
 
-export const sendSignalRoute = `${host}/api/messages/add-signal`;
+export const sendSignalRoute = `${host}/api/signals/add-signal`;
 
 export const userApi = axios.create({
 	baseURL: `${host}`,
