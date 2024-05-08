@@ -1,11 +1,11 @@
 import { useField } from "formik";
 
-export default function Select({ label, children, ...props }) {
+export default function Select({ children, ...props }) {
 	const [field, meta] = useField(props);
 
 	return (
 		<>
-			<label htmlFor="">{label}</label>
+			{/* <label htmlFor="">{label}</label> */}
 			<select
 				{...props}
 				{...field}
