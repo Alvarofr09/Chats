@@ -9,7 +9,7 @@ signalDao.addSignal = async (signalData) => {
 	try {
 		conn = await db.createConection();
 
-		const signalObj = {
+		let signalObj = {
 			sender_id: signalData.from,
 			group_id: signalData.to,
 			image: signalData.image,
