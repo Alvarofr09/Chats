@@ -13,10 +13,10 @@ export default function App() {
 		<BrowserRouter>
 			<AuthContextProvider>
 				<Routes>
-					<Route path="/register" element={<Register />} />
+					{/* <Route path="/register" element={<Register />} /> */}
 					<Route path="/user/:id" element={<UserDetails />} />
 					<Route path="/create-group/:id" element={<CreateGroup />} />
-					<Route path="/login" element={<Login />} />
+					{/* <Route path="/login" element={<Login />} /> */}
 					<Route path="/forms" element={<Forms />} />
 					<Route path="/" element={<Chat />} />
 				</Routes>
